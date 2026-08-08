@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>k1evz</title>
+  <title>k1evz — Darwin</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #09090b;
-      --bg-elevated: #0c0c0f;
-      --bg-card: #111114;
-      --bg-card-hover: #16161a;
-      --border: #1c1c21;
-      --border-hover: #2a2a32;
+      --bg-card: #111113;
+      --bg-elevated: #18181b;
+      --border: #27272a;
       --text: #fafafa;
       --text-secondary: #a1a1aa;
       --text-muted: #71717a;
       --accent: #a855f7;
       --accent-soft: rgba(168, 85, 247, 0.15);
-      --accent-muted: #c084fc;
     }
 
     * {
@@ -27,345 +24,368 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.65;
-      padding: 56px 24px 120px;
+      line-height: 1.6;
+      padding: 40px 20px 80px;
       -webkit-font-smoothing: antialiased;
     }
 
-    .wrap {
-      max-width: 680px;
+    .container {
+      max-width: 720px;
       margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
     }
 
     .logo {
       font-size: 15px;
       font-weight: 600;
       color: var(--accent);
-      letter-spacing: 0.02em;
-      margin-bottom: 64px;
-      display: inline-block;
-      transition: opacity 0.2s;
     }
 
-    .logo:hover {
-      opacity: 0.7;
-    }
-
-    .hero {
-      margin-bottom: 80px;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: all 0.7s ease;
-    }
-
-    .hero.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -1.4px;
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-
-    .hero .role {
-      font-size: 17px;
-      font-weight: 500;
+    .github-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
       color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: default;
+    }
+
+    /* Profile */
+    .profile {
+      margin-bottom: 48px;
+    }
+
+    .profile h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
       margin-bottom: 6px;
     }
 
-    .hero .loc {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .meta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 80px;
-      padding-bottom: 80px;
-      border-bottom: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(18px);
-      transition: all 0.7s ease 0.1s;
-    }
-
-    .meta.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .meta-item .label {
+    .profile .role {
+      font-size: 16px;
+      color: var(--text-secondary);
       margin-bottom: 8px;
     }
 
-    .meta-item p {
-      font-size: 15px;
-      color: var(--text);
-      font-weight: 500;
+    .profile .location {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
     }
 
-    section {
-      margin-bottom: 80px;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: all 0.7s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: -0.6px;
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 24px;
     }
 
-    p {
-      font-size: 16px;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
       color: var(--text-secondary);
+    }
+
+    .badge.purple { border-color: #7c3aed; color: #c4b5fd; background: rgba(124, 58, 237, 0.1); }
+    .badge.blue { border-color: #3b82f6; color: #93c5fd; background: rgba(59, 130, 246, 0.1); }
+    .badge.green { border-color: #22c55e; color: #86efac; background: rgba(34, 197, 94, 0.1); }
+    .badge.orange { border-color: #f97316; color: #fdba74; background: rgba(249, 115, 22, 0.1); }
+    .badge.red { border-color: #ef4444; color: #fca5a5; background: rgba(239, 68, 68, 0.1); }
+    .badge.cyan { border-color: #06b6d4; color: #67e8f9; background: rgba(6, 182, 212, 0.1); }
+    .badge.pink { border-color: #ec4899; color: #f9a8d4; background: rgba(236, 72, 153, 0.1); }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-card .number {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
       margin-bottom: 16px;
-      max-width: 560px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 14px;
       line-height: 1.7;
     }
 
     p strong {
       color: var(--text);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skill-group h3 {
+      font-size: 12px;
       font-weight: 600;
-    }
-
-    .muted {
-      color: var(--text-muted);
-      font-size: 15px;
-    }
-
-    .category {
-      margin-bottom: 36px;
-    }
-
-    .category:last-child {
-      margin-bottom: 0;
-    }
-
-    .category-title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.4px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .tags {
+    .skill-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .tags span {
-      border: 1px solid var(--border);
-      background: var(--bg-elevated);
-      color: var(--text-secondary);
+    .skill-tag {
+      padding: 6px 11px;
+      border-radius: 6px;
       font-size: 13px;
       font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: all 0.2s ease;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
       cursor: pointer;
-      user-select: none;
+      transition: all 0.15s;
     }
 
-    .tags span:hover {
+    .skill-tag:hover,
+    .skill-tag.active {
       border-color: var(--accent);
-      color: var(--accent-muted);
+      color: #c4b5fd;
       background: var(--accent-soft);
-      transform: translateY(-1px);
     }
 
-    .tags span.active {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent-muted);
-      box-shadow: 0 0 0 1px var(--accent);
+    .skill-desc {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: none;
     }
 
+    .skill-desc.show {
+      display: block;
+    }
+
+    /* Projects */
     .project {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 28px 30px;
+      border-radius: 12px;
+      padding: 24px;
       margin-bottom: 12px;
-      transition: all 0.25s ease;
+      transition: all 0.2s;
     }
 
     .project:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-      transform: translateY(-2px);
+      border-color: #3f3f46;
+      background: #131316;
     }
 
-    .project-num {
+    .project .num {
       font-size: 12px;
       color: var(--accent);
       font-weight: 600;
-      letter-spacing: 0.4px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .project h3 {
-      font-size: 20px;
-      font-weight: 650;
-      letter-spacing: -0.3px;
-      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
 
     .project p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      margin-bottom: 18px;
-      max-width: none;
+      font-size: 14px;
+      margin-bottom: 14px;
     }
 
     .project .tech {
       font-size: 12px;
       color: var(--text-muted);
-      letter-spacing: 0.2px;
-      font-weight: 500;
     }
 
-    .timeline-item {
-      margin-bottom: 32px;
-      padding-left: 20px;
-      border-left: 2px solid var(--border);
-      position: relative;
+    /* Experience */
+    .exp-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -6px;
-      top: 6px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
+    .exp-item:last-child {
+      border-bottom: none;
     }
 
-    .timeline-item .year {
+    .exp-date {
       font-size: 13px;
       color: var(--accent);
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 6px;
     }
 
-    .timeline-item h4 {
+    .exp-item h3 {
       font-size: 17px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .timeline-item p {
-      font-size: 15px;
+    .exp-item .company {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .exp-item p {
+      font-size: 14px;
       margin-bottom: 0;
     }
 
     footer {
-      margin-top: 100px;
-      padding-top: 40px;
+      margin-top: 60px;
+      padding-top: 30px;
       border-top: 1px solid var(--border);
       text-align: center;
       color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    /* Info box que aparece ao clicar */
-    .skill-info {
-      margin-top: 16px;
-      padding: 14px 16px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 14px;
-      color: var(--text-secondary);
-      display: none;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .skill-info.show {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      font-size: 13px;
     }
 
     @media (max-width: 600px) {
-      body {
-        padding: 40px 20px 80px;
+      .stats {
+        grid-template-columns: 1fr 1fr;
       }
-      .hero h1 {
-        font-size: 32px;
-      }
-      .meta {
+      .skills-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
       }
-      .project {
-        padding: 24px;
+      .profile h1 {
+        font-size: 28px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
 
-    <div class="logo">&lt;k1evz/&gt;</div>
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">&lt;k1evz/&gt;</div>
+      <div class="github-btn">
+        <span>GitHub</span>
+      </div>
+    </div>
 
-    <div class="hero" id="hero">
+    <!-- Profile -->
+    <div class="profile">
       <h1>Darwin</h1>
       <div class="role">Security Analyst • Software Engineer</div>
-      <div class="loc">Brasil</div>
-    </div>
+      <div class="location">Brasil</div>
 
-    <div class="meta" id="meta">
-      <div class="meta-item">
-        <div class="label">Idiomas</div>
-        <p>Português · Inglês</p>
-      </div>
-      <div class="meta-item">
-        <div class="label">Localização</div>
-        <p>Brasil</p>
+      <div class="badges">
+        <span class="badge purple">Reverse Engineering</span>
+        <span class="badge red">Exploit Development</span>
+        <span class="badge blue">C / C++</span>
+        <span class="badge cyan">Assembly</span>
+        <span class="badge green">Malware Analysis</span>
+        <span class="badge orange">Windows Internals</span>
       </div>
     </div>
 
-    <section id="sobre">
-      <div class="label">Sobre</div>
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="number">14</div>
+        <div class="label">Anos de experiência</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">30+</div>
+        <div class="label">Projetos</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">3</div>
+        <div class="label">Principais</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">8</div>
+        <div class="label">Ferramentas</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">2</div>
+        <div class="label">Linguagens core</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">∞</div>
+        <div class="label">Curiosity</div>
+      </div>
+    </div>
+
+    <!-- Sobre -->
+    <section>
+      <div class="section-title">Sobre</div>
       <h2>Quem sou eu</h2>
       <p>
         Sou o Darwin, mas a galera me chama de <strong>kiev</strong> ou <strong>dex</strong>. 
@@ -379,168 +399,143 @@
         Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. 
         Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.
       </p>
-      <p>
-        No dia a dia uso principalmente C/C++, assembly e debuggers. 
-        Gosto de ir fundo em low-level e em como o sistema realmente se comporta.
-      </p>
     </section>
 
-    <section id="stack">
-      <div class="label">Stack</div>
+    <!-- Stack -->
+    <section>
+      <div class="section-title">Stack</div>
       <h2>Tecnologias</h2>
 
-      <div class="category">
-        <div class="category-title">Core</div>
-        <div class="tags" id="core-tags">
-          <span data-info="Análise de binários, descompilação, compreensão de fluxo de execução e estruturas internas.">Reverse Engineering</span>
-          <span data-info="Desenvolvimento de exploits, exploração de vulnerabilidades e construção de payloads.">Exploit Development</span>
-          <span data-info="Construção de cadeias ROP para bypass de proteções como DEP/NX.">ROP Chains</span>
-          <span data-info="Escrita e otimização de shellcode em x86/x64.">Shellcode</span>
-          <span data-info="Análise estática e dinâmica de malware, extração de IOCs e comportamento.">Malware Analysis</span>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Core</h3>
+          <div class="skill-tags" id="core">
+            <span class="skill-tag" data-desc="Análise profunda de binários, descompilação e compreensão de fluxo de execução.">Reverse Engineering</span>
+            <span class="skill-tag" data-desc="Desenvolvimento de exploits e exploração de vulnerabilidades em software.">Exploit Development</span>
+            <span class="skill-tag" data-desc="Construção de cadeias ROP para bypass de proteções de memória.">ROP Chains</span>
+            <span class="skill-tag" data-desc="Escrita e otimização de shellcode x86/x64.">Shellcode</span>
+            <span class="skill-tag" data-desc="Análise estática e dinâmica de malware.">Malware Analysis</span>
+          </div>
+          <div class="skill-desc" id="core-desc"></div>
         </div>
-        <div class="skill-info" id="core-info"></div>
-      </div>
 
-      <div class="category">
-        <div class="category-title">Linguagens</div>
-        <div class="tags" id="lang-tags">
-          <span data-info="Low-level, manipulação de memória, sistemas e performance crítica.">C — low-level, memory, systems</span>
-          <span data-info="Windows API, construção de C2, ferramentas e sistemas.">C++ — Windows API, C2, tools</span>
-          <span data-info="ROP, shellcode, reversing e análise de binários.">Assembly x86/x64 — ROP, shellcode, reversing</span>
-          <span data-info="Automação, tooling, scripts de análise e prototipagem.">Python — automation, tooling, analysis</span>
-          <span data-info="Programação de sistemas com segurança de memória.">Rust — safe systems programming</span>
+        <div class="skill-group">
+          <h3>Linguagens</h3>
+          <div class="skill-tags" id="langs">
+            <span class="skill-tag" data-desc="Low-level, manipulação de memória e sistemas.">C</span>
+            <span class="skill-tag" data-desc="Windows API, C2 e ferramentas de sistema.">C++</span>
+            <span class="skill-tag" data-desc="ROP, shellcode e reversing.">Assembly</span>
+            <span class="skill-tag" data-desc="Automação, tooling e análise.">Python</span>
+            <span class="skill-tag" data-desc="Programação de sistemas segura.">Rust</span>
+          </div>
+          <div class="skill-desc" id="langs-desc"></div>
         </div>
-        <div class="skill-info" id="lang-info"></div>
-      </div>
 
-      <div class="category">
-        <div class="category-title">Ferramentas</div>
-        <div class="tags" id="tool-tags">
-          <span data-info="Descompilador e analisador estático principal.">IDA Pro</span>
-          <span data-info="Descompilador open-source usado no dia a dia.">Ghidra</span>
-          <span data-info="Debugger nativo para Windows x64.">x64dbg</span>
-          <span data-info="Debugger padrão em ambientes Linux.">GDB</span>
-          <span data-info="Debugger avançado da Microsoft para kernel e user-mode.">WinDbg</span>
-          <span data-info="Análise estática moderna e interface limpa.">Binary Ninja</span>
+        <div class="skill-group">
+          <h3>Ferramentas</h3>
+          <div class="skill-tags" id="tools">
+            <span class="skill-tag" data-desc="Descompilador principal.">IDA Pro</span>
+            <span class="skill-tag" data-desc="Descompilador open-source.">Ghidra</span>
+            <span class="skill-tag" data-desc="Debugger Windows x64.">x64dbg</span>
+            <span class="skill-tag" data-desc="Debugger Linux.">GDB</span>
+            <span class="skill-tag" data-desc="Debugger Microsoft.">WinDbg</span>
+            <span class="skill-tag" data-desc="Análise estática moderna.">Binary Ninja</span>
+          </div>
+          <div class="skill-desc" id="tools-desc"></div>
         </div>
-        <div class="skill-info" id="tool-info"></div>
-      </div>
 
-      <div class="category">
-        <div class="category-title">Infra & Outros</div>
-        <div class="tags" id="infra-tags">
-          <span data-info="Construção e operação de infraestrutura de Command & Control.">C2 Frameworks</span>
-          <span data-info="Internals do kernel e userland Linux.">Linux Internals</span>
-          <span data-info="Internals do Windows, APIs e estruturas de memória.">Windows Internals</span>
-          <span data-info="Análise de memória, dumps e forense de processos.">Memory Forensics</span>
+        <div class="skill-group">
+          <h3>Infra</h3>
+          <div class="skill-tags" id="infra">
+            <span class="skill-tag" data-desc="Infraestrutura de Command & Control.">C2 Frameworks</span>
+            <span class="skill-tag" data-desc="Internals do Linux.">Linux Internals</span>
+            <span class="skill-tag" data-desc="Internals do Windows.">Windows Internals</span>
+            <span class="skill-tag" data-desc="Análise de memória e forense.">Memory Forensics</span>
+          </div>
+          <div class="skill-desc" id="infra-desc"></div>
         </div>
-        <div class="skill-info" id="infra-info"></div>
       </div>
     </section>
 
-    <section id="projetos">
-      <div class="label">Projetos</div>
+    <!-- Projetos -->
+    <section>
+      <div class="section-title">Projetos</div>
       <h2>Trabalhos selecionados</h2>
-      <p class="muted" style="margin-bottom: 28px;">Algumas coisas que construí ou estudei a fundo ao longo do tempo.</p>
 
       <div class="project">
-        <div class="project-num">01</div>
+        <div class="num">01</div>
         <h3>Custom C2</h3>
         <p>Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
         <div class="tech">C++ · Windows API · Encryption · Network</div>
       </div>
 
       <div class="project">
-        <div class="project-num">02</div>
+        <div class="num">02</div>
         <h3>ROP Lab</h3>
         <p>Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
         <div class="tech">C · Assembly · GDB · pwntools</div>
       </div>
 
       <div class="project">
-        <div class="project-num">03</div>
+        <div class="num">03</div>
         <h3>Memory Scanner</h3>
         <p>Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
         <div class="tech">C++ · Windows Internals · Memory</div>
       </div>
     </section>
 
-    <section id="trajetoria">
-      <div class="label">Trajetória</div>
-      <h2>Caminho</h2>
+    <!-- Experiência -->
+    <section>
+      <div class="section-title">Trajetória</div>
+      <h2>Experiência</h2>
 
-      <div class="timeline-item">
-        <div class="year">2024 — atual</div>
-        <h4>Security Analyst</h4>
+      <div class="exp-item">
+        <div class="exp-date">2024 — Presente</div>
+        <h3>Security Analyst</h3>
+        <div class="company">Atual</div>
         <p>Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</p>
       </div>
 
-      <div class="timeline-item">
-        <div class="year">2022 — 2024</div>
-        <h4>Software Engineer + RE</h4>
+      <div class="exp-item">
+        <div class="exp-date">2022 — 2024</div>
+        <h3>Software Engineer + Reverse Engineering</h3>
+        <div class="company">Desenvolvimento low-level</div>
         <p>Desenvolvimento low-level e estudo intensivo de exploit development e binários.</p>
       </div>
 
-      <div class="timeline-item">
-        <div class="year">2012 — 2022</div>
-        <h4>Aprendizado autodidata</h4>
+      <div class="exp-item">
+        <div class="exp-date">2012 — 2022</div>
+        <h3>Aprendizado autodidata</h3>
+        <div class="company">Base</div>
         <p>Comecei com 12 anos. Passei por várias linguagens até chegar em C, assembly e reverse.</p>
       </div>
     </section>
 
     <footer>
-      <p>k1evz · Darwin</p>
+      k1evz · Darwin
     </footer>
 
   </div>
 
   <script>
-    // Animação de entrada
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.hero, .meta, section').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Força o hero e meta a aparecerem logo
-    window.addEventListener('load', () => {
-      document.getElementById('hero').classList.add('visible');
-      setTimeout(() => {
-        document.getElementById('meta').classList.add('visible');
-      }, 150);
-    });
-
-    // Sistema de clique nos botões de habilidade
-    function setupTags(tagContainerId, infoId) {
-      const tags = document.querySelectorAll(`#${tagContainerId} span`);
-      const infoBox = document.getElementById(infoId);
+    function setupSkillGroup(groupId, descId) {
+      const tags = document.querySelectorAll(`#${groupId} .skill-tag`);
+      const desc = document.getElementById(descId);
 
       tags.forEach(tag => {
         tag.addEventListener('click', () => {
-          // Remove active de todos
           tags.forEach(t => t.classList.remove('active'));
-          
-          // Ativa o clicado
           tag.classList.add('active');
-          
-          // Mostra a informação
-          const info = tag.getAttribute('data-info');
-          infoBox.textContent = info;
-          infoBox.classList.add('show');
+          desc.textContent = tag.getAttribute('data-desc');
+          desc.classList.add('show');
         });
       });
     }
 
-    setupTags('core-tags', 'core-info');
-    setupTags('lang-tags', 'lang-info');
-    setupTags('tool-tags', 'tool-info');
-    setupTags('infra-tags', 'infra-info');
+    setupSkillGroup('core', 'core-desc');
+    setupSkillGroup('langs', 'langs-desc');
+    setupSkillGroup('tools', 'tools-desc');
+    setupSkillGroup('infra', 'infra-desc');
   </script>
 </body>
 </html>
