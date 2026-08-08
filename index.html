@@ -19,11 +19,7 @@
       --accent: #c084fc;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: var(--bg);
@@ -39,12 +35,8 @@
       min-height: 100vh;
     }
 
-    .container {
-      max-width: 740px;
-      margin: 0 auto;
-    }
+    .container { max-width: 740px; margin: 0 auto; }
 
-    /* Header */
     .header {
       display: flex;
       justify-content: space-between;
@@ -61,14 +53,9 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 0.3px;
     }
 
-    .header-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .header-buttons { display: flex; gap: 10px; }
 
     .header-btn {
       display: flex;
@@ -91,10 +78,7 @@
       transform: translateY(-1px);
     }
 
-    /* Hero */
-    .hero {
-      margin-bottom: 52px;
-    }
+    .hero { margin-bottom: 52px; }
 
     .hero h1 {
       font-size: 42px;
@@ -132,7 +116,6 @@
       font-size: 12.5px;
       font-weight: 600;
       border: 1px solid;
-      letter-spacing: 0.2px;
     }
 
     .h-badge.purple { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); color: #d8b4fe; }
@@ -143,7 +126,6 @@
     .h-badge.orange { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.4); color: #fdba74; }
     .h-badge.red { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
 
-    /* Stats */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -176,9 +158,7 @@
       transform: translateY(-3px);
     }
 
-    .stat:hover::before {
-      opacity: 1;
-    }
+    .stat:hover::before { opacity: 1; }
 
     .stat .num {
       font-size: 30px;
@@ -199,10 +179,7 @@
       position: relative;
     }
 
-    /* Sections */
-    section {
-      margin-bottom: 60px;
-    }
+    section { margin-bottom: 60px; }
 
     .section-label {
       font-size: 11px;
@@ -227,12 +204,8 @@
       line-height: 1.75;
     }
 
-    p strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    p strong { color: var(--text); font-weight: 600; }
 
-    /* Skills */
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -267,7 +240,8 @@
       user-select: none;
     }
 
-    .tag:hover, .tag.active {
+    .tag:hover,
+    .tag.active {
       border-color: var(--purple);
       background: rgba(168,85,247,0.12);
       color: #e9d5ff;
@@ -297,7 +271,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Projects */
     .project {
       background: var(--card);
       border: 1px solid var(--border);
@@ -312,9 +285,7 @@
     .project::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
+      left: 0; top: 0; bottom: 0;
       width: 3px;
       background: linear-gradient(to bottom, var(--purple), var(--pink));
       opacity: 0;
@@ -328,9 +299,7 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     }
 
-    .project:hover::before {
-      opacity: 1;
-    }
+    .project:hover::before { opacity: 1; }
 
     .project .num {
       font-size: 12px;
@@ -347,18 +316,9 @@
       letter-spacing: -0.3px;
     }
 
-    .project p {
-      font-size: 14.5px;
-      margin-bottom: 16px;
-    }
+    .project p { font-size: 14.5px; margin-bottom: 16px; }
+    .project .tech { font-size: 12.5px; color: var(--text-muted); font-weight: 500; }
 
-    .project .tech {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Experience */
     .exp {
       position: relative;
       padding-left: 24px;
@@ -366,17 +326,13 @@
       margin-bottom: 28px;
     }
 
-    .exp:last-child {
-      margin-bottom: 0;
-    }
+    .exp:last-child { margin-bottom: 0; }
 
     .exp::before {
       content: '';
       position: absolute;
-      left: -7px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
+      left: -7px; top: 6px;
+      width: 12px; height: 12px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--purple), var(--pink));
       box-shadow: 0 0 12px rgba(168,85,247,0.5);
@@ -389,24 +345,10 @@
       margin-bottom: 6px;
     }
 
-    .exp h3 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
+    .exp h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .exp .sub { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+    .exp p { font-size: 14.5px; margin-bottom: 0; }
 
-    .exp .sub {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .exp p {
-      font-size: 14.5px;
-      margin-bottom: 0;
-    }
-
-    /* Contact Cards */
     .contact-card {
       background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.08));
       border: 1px solid rgba(168,85,247,0.3);
@@ -416,17 +358,8 @@
       margin-bottom: 16px;
     }
 
-    .contact-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .contact-card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
+    .contact-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
 
     .contact-value {
       display: inline-flex;
@@ -484,9 +417,8 @@
 <body>
   <div class="container">
 
-    <!-- Header -->
     <div class="header">
-      
+      <div class="logo">k1evz</div>
       <div class="header-buttons">
         <a href="mailto:k1evz@proton.me" class="header-btn" title="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -502,17 +434,12 @@
       </div>
     </div>
 
-    <!-- Hero -->
     <div class="hero">
-  <div style="font-size: 13px; color: #8b7a9e; margin-bottom: 4px; font-weight: 500; letter-spacing: 0.3px;">
-    nome
-  </div>
-  <h1>Darwin</h1>
-  <div style="font-size: 13px; color: #8b7a9e; margin-top: 6px; margin-bottom: 6px; font-weight: 500;">
-    Username - Kiev/dex
-  </div>
-  <div class="role">Security Analyst • Software Engineer</div>
-  <div class="location">Brasil</div>
+      <div style="font-size: 13px; color: #8b7a9e; margin-bottom: 4px; font-weight: 500;">nome</div>
+      <h1>Darwin</h1>
+      <div style="font-size: 13px; color: #8b7a9e; margin-top: 6px; margin-bottom: 6px; font-weight: 500;">Username — Kiev / dex</div>
+      <div class="role">Security Analyst • Software Engineer</div>
+      <div class="location">Brasil</div>
 
       <div class="hero-badges">
         <span class="h-badge purple">Reverse Engineering</span>
@@ -525,57 +452,24 @@
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="stats">
-      <div class="stat">
-        <div class="num">6</div>
-<div class="label">Projetos pessoais</div>
-      </div>
-      <div class="stat">
-        <div class="num">12</div>
-        <div class="label">Projetos</div>
-      </div>
-      <div class="stat">
-        <div class="num">3</div>
-        <div class="label">Principais</div>
-      </div>
-      <div class="stat">
-        <div class="num">8</div>
-        <div class="label">Ferramentas core</div>
-      </div>
-      <div class="stat">
-        <div class="num">5</div>
-        <div class="label">Linguagens</div>
-      </div>
-      <div class="stat">
-        <div class="num">∞</div>
-        <div class="label">Curiosity</div>
-      </div>
+      <div class="stat"><div class="num">6</div><div class="label">Projetos pessoais</div></div>
+      <div class="stat"><div class="num">12</div><div class="label">Projetos</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Principais</div></div>
+      <div class="stat"><div class="num">8</div><div class="label">Ferramentas core</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Linguagens</div></div>
+      <div class="stat"><div class="num">∞</div><div class="label">Curiosity</div></div>
     </div>
 
-    <!-- Sobre -->
     <section>
       <div class="section-label">Sobre</div>
       <h2>Quem sou eu</h2>
-      <p>
-        Sou o Darwin, mas a galera me chama de <strong>kiev</strong> ou <strong>dex</strong>. 
-        Comecei a programar com 12 anos e desde então nunca parei.
-      </p>
-      <p>
-        Hoje trabalho como Security Analyst e atuo também como Software Engineer. 
-        Meu interesse real sempre foi entender como as coisas funcionam por baixo — memória, binários, execução.
-      </p>
-      <p>
-        Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. 
-        Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.
-      </p>
-      <p>
-        No dia a dia uso principalmente C/C++, assembly e debuggers. 
-        Gosto de ir fundo em low-level e em como o sistema realmente se comporta.
-      </p>
+      <p>Sou o Darwin, mas a galera me chama de <strong>kiev</strong> ou <strong>dex</strong>. Comecei a programar com 12 anos e desde então nunca parei.</p>
+      <p>Hoje trabalho como Security Analyst e atuo também como Software Engineer. Meu interesse real sempre foi entender como as coisas funcionam por baixo — memória, binários, execução.</p>
+      <p>Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.</p>
+      <p>No dia a dia uso principalmente C/C++, assembly e debuggers. Gosto de ir fundo em low-level e em como o sistema realmente se comporta.</p>
     </section>
 
-    <!-- Stack -->
     <section>
       <div class="section-label">Stack</div>
       <h2>Tecnologias</h2>
@@ -631,7 +525,6 @@
       </div>
     </section>
 
-    <!-- Projetos -->
     <section>
       <div class="section-label">Projetos</div>
       <h2>Trabalhos selecionados</h2>
@@ -658,7 +551,6 @@
       </div>
     </section>
 
-    <!-- Experiência -->
     <section>
       <div class="section-label">Trajetória</div>
       <h2>Experiência</h2>
@@ -674,10 +566,35 @@
         <div class="date">2022 — 2024</div>
         <h3>Software Engineer + Reverse Engineering</h3>
         <div class="sub">Desenvolvimento low-level</div>
-        <p>Desenvolvimento low-level e estudo intensivo de exploit development e binários.</p>
+        <p>Desenvolvimento low-level e estudo profundo de sistemas operacionais, binários e técnicas de exploração.</p>
       </div>
+    </section>
 
-      <div class="exp">
-        <div class="date">2012 — 2022</div>
-        <h3>Aprendizado autodidata</h3>
-        <div class="sub">Base
+    <section>
+      <div class="section-label">Contato</div>
+      <h2>Vamos conversar</h2>
+
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p>Me manda um email direto</p>
+        <div class="contact-value" onclick="copyEmail()">
+          k1evz@proton.me
+          <span class="copy">clique para copiar</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Feito por <span>Darwin / k1evz</span> — 2026
+    </footer>
+  </div>
+
+  <script>
+    // Tags interativos
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const box = tag.closest('.skill-box');
+        const info = box.querySelector('.skill-info');
+
+        // remove active dos irmãos
+        box.querySelectorAll('.tag').forEach(t =
