@@ -74,7 +74,6 @@
       margin-inline: auto;
     }
 
-    /* Header */
     .site-header {
       display: flex;
       align-items: center;
@@ -113,7 +112,6 @@
       box-shadow: var(--shadow-glow);
     }
 
-    /* Hero */
     .hero { margin-bottom: 72px; }
 
     .hero-badge {
@@ -217,7 +215,6 @@
       font-weight: 500;
     }
 
-    /* Sections */
     section { margin-bottom: clamp(56px, 9vw, 90px); }
 
     .section-label {
@@ -236,7 +233,6 @@
       margin-bottom: 24px;
     }
 
-    /* About */
     .about-text {
       color: var(--text-soft);
       font-size: 1.02rem;
@@ -247,7 +243,6 @@
     .about-text p:last-child { margin-bottom: 0; }
     .about-text strong { color: var(--text); font-weight: 600; }
 
-    /* Stack */
     .stack-grid { display: grid; gap: 16px; }
 
     .stack-group {
@@ -269,7 +264,6 @@
 
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-    /* Projects */
     .projects { display: grid; gap: 14px; }
 
     .project {
@@ -312,7 +306,6 @@
       color: var(--text-muted);
     }
 
-    /* Timeline */
     .timeline {
       position: relative;
       padding-left: 26px;
@@ -363,14 +356,9 @@
       line-height: 1.6;
     }
 
-    /* Contact */
     .contact-cards { display: grid; gap: 12px; }
 
     .contact-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
@@ -380,6 +368,13 @@
     }
 
     .contact-card:hover { border-color: var(--border-strong); }
+
+    .contact-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
     .contact-info h3 {
       font-size: 1rem;
@@ -415,7 +410,26 @@
       border-color: rgba(74, 222, 128, 0.3);
     }
 
-    /* Reveal */
+    .contact-detail {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--purple-light);
+      font-weight: 500;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .contact-detail.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .js .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -446,9 +460,6 @@
     <header class="site-header">
       <a href="/" class="logo">k1evz</a>
       <div class="header-actions">
-        <a class="icon-btn" href="mailto:k1evz@proton.me" title="Email" aria-label="Email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
         <button class="icon-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
           <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
           <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -457,7 +468,6 @@
     </header>
 
     <main>
-      <!-- Hero -->
       <section class="hero reveal">
         <div class="hero-badge">Security Analyst • Software Engineer</div>
         <h1>Darwin</h1>
@@ -478,11 +488,11 @@
 
         <div class="stats">
           <div class="stat">
-            <div class="stat-value">14</div>
-            <div class="stat-label">Anos de experiência</div>
+            <div class="stat-value">5</div>
+            <div class="stat-label">Projetos individuais</div>
           </div>
           <div class="stat">
-            <div class="stat-value">30+</div>
+            <div class="stat-value">11</div>
             <div class="stat-label">Projetos</div>
           </div>
           <div class="stat">
@@ -496,7 +506,6 @@
         </div>
       </section>
 
-      <!-- Sobre -->
       <section class="reveal">
         <div class="section-label">Sobre</div>
         <h2 class="section-title">Quem sou eu</h2>
@@ -510,7 +519,6 @@
         </div>
       </section>
 
-      <!-- Stack -->
       <section class="reveal">
         <div class="section-label">Stack</div>
         <h2 class="section-title">Tecnologias</h2>
@@ -558,7 +566,6 @@
         </div>
       </section>
 
-      <!-- Projetos -->
       <section class="reveal">
         <div class="section-label">Projetos</div>
         <h2 class="section-title">Trabalhos selecionados</h2>
@@ -584,7 +591,6 @@
         </div>
       </section>
 
-      <!-- Experiência -->
       <section class="reveal">
         <div class="section-label">Trajetória</div>
         <h2 class="section-title">Experiência</h2>
@@ -610,14 +616,19 @@
         </div>
       </section>
 
-      <!-- Contato -->
       <section class="reveal">
         <div class="section-label">Contato</div>
         <h2 class="section-title">Vamos conversar</h2>
         <div class="contact-cards">
           <div class="contact-card">
-            <div class="contact-info">
-              <h3>Proton Mail</h3>
-              <p>Email principal para contato profissional</p>
+            <div class="contact-top">
+              <div class="contact-info">
+                <h3>Discord</h3>
+                <p>A forma mais rápida de me chamar</p>
+              </div>
+              <button class="copy-btn" data-copy="k1evz" data-detail="k1evz">Copiar Discord</button>
             </div>
-            <button class="copy-btn" data-copy="k1evz@proton.me">k1evz@p
+            <div class="contact-detail" id="detail-discord"></div>
+          </div>
+        </div>
+   
