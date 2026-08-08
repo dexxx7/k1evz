@@ -2,654 +2,956 @@
 <html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="k1evz — Darwin. Security Analyst e Software Engineer focado em Reverse Engineering, low-level e Windows Internals.">
-  <meta name="theme-color" content="#0c0614">
-  <title>k1evz — Darwin</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Kievz — Creative Digital Studio. Design, desenvolvimento e inovação.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark light">
+  <title>Kievz | Estúdio Criativo Digital</title>
   <style>
+    /* ==============================
+       MÓDULO 2: DESIGN SYSTEM E PALETA DE CORES INTELIGENTE
+       ============================== */
     :root {
-      --bg: #0c0614;
-      --bg-soft: #11091b;
-      --surface: rgba(20, 11, 31, .82);
-      --surface-solid: #140b1f;
-      --surface-hover: #1b1028;
-      --text: #f7f2ff;
-      --text-soft: #d2c8dc;
-      --text-muted: #8d8299;
-      --border: rgba(184, 117, 255, .18);
-      --border-strong: rgba(184, 117, 255, .42);
-      --purple: #a855f7;
-      --purple-light: #c084fc;
-      --pink: #ec4899;
-      --cyan: #22d3ee;
-      --green: #4ade80;
-      --orange: #fb923c;
-      --blue: #60a5fa;
-      --red: #f87171;
-      --gradient: linear-gradient(135deg, #c084fc, #ec4899);
-      --gradient-text: linear-gradient(135deg, #ffffff 15%, #c084fc 55%, #ec4899 100%);
-      --shadow-sm: 0 8px 30px rgba(0, 0, 0, .18);
-      --shadow-md: 0 18px 50px rgba(0, 0, 0, .28);
-      --shadow-glow: 0 0 40px rgba(168, 85, 247, .12);
-      --radius-sm: 10px;
+      /* Cores primárias */
+      --color-primary: #6c5ce7;
+      --color-primary-light: #a29bfe;
+      --color-primary-dark: #4834d4;
+
+      /* Cores secundárias */
+      --color-secondary: #00cec9;
+      --color-secondary-light: #81ecec;
+      --color-secondary-dark: #00b894;
+
+      /* Cores de acentuação */
+      --color-accent: #fd79a8;
+      --color-accent-glow: #e84393;
+
+      /* Cores neutras - Modo Claro (defaults, sobrescritas no dark) */
+      --color-bg: #ffffff;
+      --color-bg-alt: #f8f9fa;
+      --color-surface: #ffffff;
+      --color-surface-hover: #f1f3f5;
+      --color-text: #1a1a2e;
+      --color-text-secondary: #4a4a6a;
+      --color-text-muted: #7f8c8d;
+      --color-border: #e0e0e0;
+      --color-border-light: #f0f0f0;
+      --color-shadow: rgba(0, 0, 0, 0.06);
+      --color-shadow-strong: rgba(0, 0, 0, 0.1);
+
+      /* Estados */
+      --color-success: #27ae60;
+      --color-error: #e74c3c;
+      --color-warning: #f39c12;
+      --color-info: #3498db;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --glass-blur: blur(12px);
+
+      /* Tipografia fluida (MÓDULO 3) */
+      --font-scale-1: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --font-scale-2: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --font-scale-3: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+      --font-scale-4: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+      --font-scale-5: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+      --font-scale-6: clamp(2.25rem, 1.8rem + 1.8vw, 3.5rem);
+      --font-scale-7: clamp(3rem, 2.2rem + 3vw, 5rem);
+
+      /* Pesos */
+      --weight-light: 300;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+
+      /* Espaçamentos */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+      --space-section: clamp(3rem, 6vw, 8rem);
+
+      /* Bordas e curvas */
+      --radius-sm: 8px;
       --radius-md: 16px;
-      --radius-lg: 22px;
-      --ease: cubic-bezier(.2, .8, .2, 1);
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
+
+      /* Transições */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+      --duration-fast: 150ms;
+      --duration-normal: 300ms;
+      --duration-slow: 500ms;
+      --duration-very-slow: 800ms;
+
+      /* Anel de foco para acessibilidade */
+      --focus-ring: 0 0 0 3px rgba(108, 92, 231, 0.5);
+      --focus-ring-offset: 2px;
     }
 
-    [data-theme="light"] {
-      --bg: #f7f3fb;
-      --bg-soft: #eee8f5;
-      --surface: rgba(255,255,255,.85);
-      --surface-solid: #ffffff;
-      --surface-hover: #f4eef9;
-      --text: #1a1023;
-      --text-soft: #4f4359;
-      --text-muted: #766a7f;
-      --border: rgba(95, 45, 135, .16);
-      --border-strong: rgba(126, 65, 170, .38);
-      --shadow-sm: 0 8px 30px rgba(55, 30, 75, .08);
-      --shadow-md: 0 18px 50px rgba(55, 30, 75, .13);
+    /* Modo escuro (data-theme="dark") */
+    [data-theme="dark"] {
+      --color-bg: #0a0a0a;
+      --color-bg-alt: #111111;
+      --color-surface: #1a1a2e;
+      --color-surface-hover: #25253e;
+      --color-text: #ede7f6;
+      --color-text-secondary: #b0b0d0;
+      --color-text-muted: #7f8c8d;
+      --color-border: #2d2d44;
+      --color-border-light: #3a3a5c;
+      --color-shadow: rgba(0, 0, 0, 0.3);
+      --color-shadow-strong: rgba(0, 0, 0, 0.5);
+      --glass-bg: rgba(20, 20, 40, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --glass-blur: blur(16px);
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    /* Se o sistema prefere escuro e não há data-theme definido */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --color-bg: #0a0a0a;
+        --color-bg-alt: #111111;
+        --color-surface: #1a1a2e;
+        --color-surface-hover: #25253e;
+        --color-text: #ede7f6;
+        --color-text-secondary: #b0b0d0;
+        --color-text-muted: #7f8c8d;
+        --color-border: #2d2d44;
+        --color-border-light: #3a3a5c;
+        --color-shadow: rgba(0, 0, 0, 0.3);
+        --color-shadow-strong: rgba(0, 0, 0, 0.5);
+        --glass-bg: rgba(20, 20, 40, 0.4);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        --glass-blur: blur(16px);
+      }
+    }
+
+    /* Reset e estilos base */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(ellipse 70% 45% at 8% -5%, rgba(168,85,247,.20), transparent 65%),
-        radial-gradient(ellipse 60% 45% at 95% 5%, rgba(236,72,153,.14), transparent 65%),
-        var(--bg);
-      color: var(--text);
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
       line-height: 1.6;
-      transition: background .35s ease, color .35s ease;
+      font-weight: var(--weight-regular);
+      font-size: var(--font-scale-2);
+      transition: background-color var(--duration-normal) var(--ease-out-expo),
+                  color var(--duration-normal) var(--ease-out-expo);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: linear-gradient(to bottom, black, transparent 80%);
-      z-index: -1;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-
-    button:focus-visible,
-    a:focus-visible {
-      outline: 2px solid var(--purple-light);
-      outline-offset: 4px;
-    }
-
+    /* ==============================
+       MÓDULO 1: ESTRUTURA SEMÂNTICA E LAYOUT
+       ============================== */
     .container {
-      width: min(100% - 32px, 760px);
-      margin-inline: auto;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
     }
 
-    main { padding-bottom: 80px; }
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 var(--space-xl);
+      }
+    }
 
-    section { margin-bottom: clamp(56px, 8vw, 90px); }
-
-    /* Header */
+    /* Header com navegação */
     .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      background: var(--glass-bg);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: background var(--duration-normal) var(--ease-out-expo);
+    }
+
+    .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 0 54px;
+      height: clamp(56px, 8vw, 72px);
+      padding: 0 var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .logo {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: -.04em;
-      background: var(--gradient);
-      background-clip: text;
+      font-size: var(--font-scale-4);
+      font-weight: var(--weight-bold);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
       -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .header-actions { display: flex; gap: 9px; }
-
-    .icon-button {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255,255,255,.025);
-      color: var(--text-soft);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: transform .25s var(--ease), border-color .25s ease, background .25s ease, box-shadow .25s ease;
-    }
-
-    .icon-button:hover {
-      transform: translateY(-3px);
-      border-color: var(--border-strong);
-      background: rgba(168,85,247,.10);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .icon-button:active { transform: translateY(0) scale(.95); }
-
-    /* Hero */
-    .hero { margin-bottom: 70px; }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(168,85,247,.08);
-      color: var(--purple-light);
-      font-size: .82rem;
-      font-weight: 500;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 3.4rem);
-      font-weight: 800;
-      letter-spacing: -.045em;
-      line-height: 1.08;
-      margin: 0 0 16px;
-      background: var(--gradient-text);
+      -webkit-text-fill-color: transparent;
       background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      user-select: none;
     }
 
-    .hero-role {
-      font-size: 1.15rem;
-      color: var(--text-soft);
-      margin: 0 0 28px;
-      font-weight: 500;
-    }
-
-    .hero-location {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-      font-size: .92rem;
-      margin-bottom: 36px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 14px;
-    }
-
-    .stat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 18px 16px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-    }
-
-    .stat-value {
-      font-size: 1.55rem;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      background: var(--gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: .78rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Sections */
-    .section-label {
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--purple-light);
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: 1.55rem;
-      font-weight: 700;
-      letter-spacing: -.03em;
-      margin: 0 0 28px;
-    }
-
-    /* About */
-    .about-text {
-      color: var(--text-soft);
-      font-size: 1.02rem;
-      line-height: 1.75;
-    }
-
-    .about-text p { margin: 0 0 16px; }
-    .about-text strong { color: var(--text); font-weight: 600; }
-
-    /* Stack */
-    .stack-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .stack-group {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px 22px;
-      backdrop-filter: blur(12px);
-    }
-
-    .stack-group h3 {
-      margin: 0 0 14px;
-      font-size: .88rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: .02em;
-    }
-
-    .tags {
+    .nav-list {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      list-style: none;
+      gap: var(--space-lg);
+      align-items: center;
     }
 
-    .tag {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(168,85,247,.1);
-      border: 1px solid var(--border);
-      font-size: .82rem;
-      font-weight: 500;
-      color: var(--text-soft);
-    }
-
-    /* Projects */
-    .projects {
-      display: grid;
-      gap: 16px;
-    }
-
-    .project {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      transition: border-color .25s ease, transform .25s var(--ease), box-shadow .25s ease;
-      backdrop-filter: blur(12px);
-    }
-
-    .project:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .project-num {
-      font-size: .78rem;
-      font-weight: 700;
-      color: var(--purple-light);
-      margin-bottom: 8px;
-    }
-
-    .project h3 {
-      margin: 0 0 10px;
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-
-    .project p {
-      margin: 0 0 16px;
-      color: var(--text-soft);
-      font-size: .95rem;
-      line-height: 1.6;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: .78rem;
-      color: var(--text-muted);
-    }
-
-    /* Timeline */
-    .timeline {
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+      font-size: var(--font-scale-1);
+      transition: color var(--duration-fast) var(--ease-out-expo);
       position: relative;
-      padding-left: 24px;
-      border-left: 2px solid var(--border);
+      padding: var(--space-xs) 0;
     }
 
-    .timeline-item {
-      position: relative;
-      padding-bottom: 32px;
-    }
-
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-item::before {
-      content: "";
+    .nav-link::after {
+      content: '';
       position: absolute;
-      left: -31px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--purple);
-      box-shadow: 0 0 0 4px var(--bg);
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width var(--duration-normal) var(--ease-out-expo);
     }
 
-    .timeline-date {
-      font-size: .82rem;
-      color: var(--purple-light);
-      font-weight: 600;
-      margin-bottom: 4px;
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--color-text);
     }
 
-    .timeline-item h3 {
-      margin: 0 0 4px;
-      font-size: 1.05rem;
-      font-weight: 700;
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after {
+      width: 100%;
     }
 
-    .timeline-role {
-      font-size: .88rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .timeline-description {
-      color: var(--text-soft);
-      font-size: .95rem;
-      line-height: 1.6;
-    }
-
-    /* Contact */
-    .contact-cards {
-      display: grid;
-      gap: 14px;
-    }
-
-    .contact-card {
+    /* Toggle de tema */
+    .theme-toggle {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px 22px;
-      backdrop-filter: blur(12px);
-      transition: border-color .25s ease;
-    }
-
-    .contact-card:hover { border-color: var(--border-strong); }
-
-    .contact-info h3 {
-      margin: 0 0 4px;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .contact-info p {
-      margin: 0;
-      font-size: .88rem;
-      color: var(--text-muted);
-    }
-
-    .copy-btn {
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(168,85,247,.1);
-      color: var(--purple-light);
-      font-size: .82rem;
-      font-weight: 600;
+      justify-content: center;
       cursor: pointer;
-      transition: background .2s ease, transform .2s ease;
-      white-space: nowrap;
+      color: var(--color-text);
+      font-size: var(--font-scale-3);
+      transition: all var(--duration-fast) var(--ease-out-expo);
+      position: relative;
     }
 
-    .copy-btn:hover {
-      background: rgba(168,85,247,.2);
-      transform: translateY(-1px);
+    .theme-toggle:hover {
+      background: var(--color-surface-hover);
+      box-shadow: var(--color-shadow);
     }
 
-    .copy-btn.copied {
-      background: rgba(74,222,128,.15);
-      color: var(--green);
-      border-color: rgba(74,222,128,.3);
+    .theme-toggle:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
     }
 
-    /* Reveal animation */
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .6s var(--ease), transform .6s var(--ease);
+    .theme-toggle .icon-sun,
+    .theme-toggle .icon-moon {
+      position: absolute;
+      transition: opacity var(--duration-normal), transform var(--duration-normal) var(--ease-out-expo);
     }
 
-    .js .reveal.visible {
+    [data-theme="dark"] .icon-sun {
       opacity: 1;
-      transform: translateY(0);
+      transform: rotate(0deg) scale(1);
     }
 
-    /* Responsive */
-    @media (min-width: 640px) {
-      .container { width: min(100% - 64px, 820px); }
-      .site-header { padding-top: 38px; }
-      .hero { margin-bottom: 85px; }
-      .stats { grid-template-columns: repeat(5, 1fr); }
+    [data-theme="dark"] .icon-moon {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.5);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+    [data-theme="light"] .icon-sun {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.5);
+    }
+
+    [data-theme="light"] .icon-moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    /* Menu mobile (simplificado, mas presente) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: var(--font-scale-4);
+      cursor: pointer;
+      padding: var(--space-sm);
+    }
+
+    @media (max-width: 767px) {
+      .nav-list {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
       }
     }
+
+    /* ==============================
+       MÓDULO 1: MAIN E SEÇÕES
+       ============================== */
+    main {
+      margin-top: clamp(56px, 8vw, 72px);
+    }
+
+    section {
+      padding: var(--space-section) 0;
+      position: relative;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 90vh;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 40%, rgba(108, 92, 231, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(0, 206, 201, 0.06) 0%, transparent 50%);
+    }
+
+    .hero-title {
+      font-size: var(--font-scale-7);
+      font-weight: var(--weight-bold);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      max-width: 800px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-scale-4);
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin-bottom: var(--space-2xl);
+      font-weight: var(--weight-regular);
+    }
+
+    /* ==============================
+       MÓDULO 4: BOTÕES E MICRO-INTERAÇÕES
+       ============================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 0.8em 2em;
+      border-radius: var(--radius-full);
+      font-weight: var(--weight-semibold);
+      font-size: var(--font-scale-2);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-out-expo);
+      outline: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    /* Botão Primário */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--color-secondary-dark), var(--color-primary));
+      opacity: 0;
+      transition: opacity var(--duration-normal) var(--ease-out-expo);
+      z-index: -1;
+      border-radius: var(--radius-full);
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(108, 92, 231, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 2px 10px rgba(108, 92, 231, 0.3);
+      transition: all var(--duration-fast) var(--ease-out-expo);
+    }
+
+    .btn-primary:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring), 0 4px 15px rgba(108, 92, 231, 0.4);
+      outline-offset: var(--focus-ring-offset);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+      filter: grayscale(30%);
+    }
+
+    /* Botão Glass */
+    .btn-glass {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      color: var(--color-text);
+      box-shadow: var(--glass-shadow);
+    }
+
+    .btn-glass:hover {
+      background: var(--color-surface-hover);
+      border-color: var(--color-primary-light);
+      box-shadow: 0 12px 32px var(--color-shadow-strong);
+      transform: translateY(-2px);
+    }
+
+    .btn-glass:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-glass:focus-visible {
+      box-shadow: var(--focus-ring), var(--glass-shadow);
+    }
+
+    .btn-glass:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Spinner de carregamento */
+    .btn-loading {
+      position: relative;
+      color: transparent !important;
+      pointer-events: none;
+    }
+
+    .btn-loading::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Efeito magnético (apenas no botão hero principal) */
+    .btn-magnetic {
+      transition: transform var(--duration-fast) var(--ease-out-expo);
+    }
+
+    /* ==============================
+       MÓDULO 5: ANIMAÇÕES E SCROLL
+       ============================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transition: opacity var(--duration-slow) var(--ease-out-expo),
+                  transform var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .reveal.fade-up {
+      transform: translateY(40px);
+    }
+
+    .reveal.fade-scale {
+      transform: scale(0.9);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ==============================
+       MÓDULO 1: GRID E FLEXBOX LAYOUTS
+       ============================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+
+    .feature-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      transition: all var(--duration-normal) var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px var(--color-shadow-strong);
+      border-color: var(--color-primary-light);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-md);
+      display: inline-block;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .feature-title {
+      font-size: var(--font-scale-4);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-desc {
+      color: var(--color-text-secondary);
+      font-size: var(--font-scale-2);
+    }
+
+    /* Grade de projetos (exemplo) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+    }
+
+    .project-card {
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-out-expo);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px var(--color-shadow-strong);
+    }
+
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-scale-7);
+      color: rgba(255,255,255,0.3);
+    }
+
+    .project-info {
+      padding: var(--space-lg);
+    }
+
+    /* Container Queries (suporte moderno) */
+    @container (min-width: 400px) {
+      .feature-card {
+        padding: var(--space-2xl);
+      }
+    }
+
+    /* ==============================
+       MÓDULO 6: ACESSIBILIDADE E PERFORMANCE
+       ============================== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* Respeitar prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-2xl) var(--space-lg);
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: var(--font-scale-1);
+    }
+
+    /* Utilitários */
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: var(--space-xl); }
+    .mb-2 { margin-bottom: var(--space-xl); }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header class="site-header">
-      <a href="/" class="logo">k1evz</a>
-      <div class="header-actions">
-        <a class="icon-button" href="mailto:k1evz@proton.me" title="Email" aria-label="Email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
-        <button class="icon-button" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        </button>
+  <!-- ==============================
+       MÓDULO 1: HEADER SEMÂNTICO
+       ============================== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="Kievz - Página inicial">Kievz</a>
+      <nav aria-label="Navegação principal">
+        <ul class="nav-list" role="list">
+          <li><a href="#inicio" class="nav-link" aria-current="page">Início</a></li>
+          <li><a href="#recursos" class="nav-link">Recursos</a></li>
+          <li><a href="#projetos" class="nav-link">Projetos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+        ☰
+      </button>
+      <button class="theme-toggle" aria-label="Alternar modo escuro/claro" id="themeToggle">
+        <span class="icon-sun" aria-hidden="true">☀️</span>
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section id="inicio" class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <h1 id="hero-heading" class="hero-title reveal fade-up">Criamos o futuro digital</h1>
+        <p class="hero-subtitle reveal fade-up" style="transition-delay: 0.1s;">
+          Design, código e estratégia unidos para elevar marcas ao próximo nível.
+        </p>
+        <div class="reveal fade-up" style="transition-delay: 0.2s;">
+          <button class="btn btn-primary btn-magnetic" id="ctaButton" aria-label="Iniciar projeto">
+            Iniciar Projeto ✦
+          </button>
+          <button class="btn btn-glass" style="margin-left: var(--space-md);" id="demoLoadingBtn" aria-label="Ver demonstração">
+            Ver Demonstração
+          </button>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero reveal">
-        <div class="hero-badge">Security Analyst • Software Engineer</div>
-        <h1>Darwin</h1>
-        <p class="hero-role">Reverse Engineering • Exploit Development • Low-level</p>
-        <div class="hero-location">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          Brasil
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-value">14</div>
-            <div class="stat-label">Anos de experiência</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">30+</div>
-            <div class="stat-label">Projetos</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">3</div>
-            <div class="stat-label">Principais</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">8</div>
-            <div class="stat-label">Ferramentas core</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">∞</div>
-            <div class="stat-label">Curiosity</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sobre -->
-      <section class="reveal">
-        <div class="section-label">Sobre</div>
-        <h2 class="section-title">Quem sou eu</h2>
-        <div class="about-text">
-          <p>Sou o Darwin, mas a galera me chama de <strong>kiev</strong> ou <strong>dex</strong>. Comecei a programar com 12 anos e desde então nunca parei.</p>
-          <p>Hoje trabalho como Security Analyst e atuo também como Software Engineer. Meu interesse real sempre foi entender como as coisas funcionam por baixo — memória, binários, execução.</p>
-          <p>Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.</p>
-          <p>No dia a dia uso principalmente C/C++, assembly e debuggers. Gosto de ir fundo em low-level e em como o sistema realmente se comporta.</p>
-        </div>
-      </section>
-
-      <!-- Stack -->
-      <section class="reveal">
-        <div class="section-label">Stack</div>
-        <h2 class="section-title">Tecnologias</h2>
-        <div class="stack-grid">
-          <div class="stack-group">
-            <h3>Core</h3>
-            <div class="tags">
-              <span class="tag">Reverse Engineering</span>
-              <span class="tag">Exploit Development</span>
-              <span class="tag">ROP Chains</span>
-              <span class="tag">Shellcode</span>
-              <span class="tag">Malware Analysis</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <h3>Linguagens</h3>
-            <div class="tags">
-              <span class="tag">C</span>
-              <span class="tag">C++</span>
-              <span class="tag">Assembly</span>
-              <span class="tag">Python</span>
-              <span class="tag">Rust</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <h3>Ferramentas</h3>
-            <div class="tags">
-              <span class="tag">IDA Pro</span>
-              <span class="tag">Ghidra</span>
-              <span class="tag">x64dbg</span>
-              <span class="tag">GDB</span>
-              <span class="tag">WinDbg</span>
-              <span class="tag">Binary Ninja</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <h3>Infra & Outros</h3>
-            <div class="tags">
-              <span class="tag">C2 Frameworks</span>
-              <span class="tag">Linux Internals</span>
-              <span class="tag">Windows Internals</span>
-              <span class="tag">Memory Forensics</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projetos -->
-      <section class="reveal">
-        <div class="section-label">Projetos</div>
-        <h2 class="section-title">Trabalhos selecionados</h2>
-        <div class="projects">
-          <article class="project">
-            <div class="project-num">01</div>
-            <h3>Custom C2</h3>
-            <p>Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
-            <div class="project-tech">C++ · Windows API · Encryption · Network</div>
+    <!-- Recursos -->
+    <section id="recursos" aria-labelledby="recursos-heading">
+      <div class="container">
+        <h2 id="recursos-heading" class="text-center reveal fade-up" style="font-size: var(--font-scale-6); font-weight: var(--weight-bold);">
+          Recursos poderosos
+        </h2>
+        <p class="text-center reveal fade-up" style="color: var(--color-text-secondary); max-width: 600px; margin: var(--space-md) auto 0; font-size: var(--font-scale-3);">
+          Tudo que você precisa para construir interfaces modernas e acessíveis.
+        </p>
+        <div class="features-grid">
+          <article class="feature-card reveal fade-up" style="transition-delay: 0.1s;" aria-labelledby="feature1">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <h3 id="feature1" class="feature-title">Performance Extrema</h3>
+            <p class="feature-desc">Animações aceleradas por GPU, carregamento instantâneo e zero desperdício de recursos.</p>
           </article>
-          <article class="project">
-            <div class="project-num">02</div>
-            <h3>ROP Lab</h3>
-            <p>Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
-            <div class="project-tech">C · Assembly · GDB · pwntools</div>
+          <article class="feature-card reveal fade-up" style="transition-delay: 0.2s;" aria-labelledby="feature2">
+            <div class="feature-icon" aria-hidden="true">🎨</div>
+            <h3 id="feature2" class="feature-title">Design System Robusto</h3>
+            <p class="feature-desc">Cores, tipografia e componentes regidos por tokens customizáveis e modo escuro nativo.</p>
           </article>
-          <article class="project">
-            <div class="project-num">03</div>
-            <h3>Memory Scanner</h3>
-            <p>Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
-            <div class="project-tech">C++ · Windows Internals · Memory</div>
+          <article class="feature-card reveal fade-up" style="transition-delay: 0.3s;" aria-labelledby="feature3">
+            <div class="feature-icon" aria-hidden="true">♿</div>
+            <h3 id="feature3" class="feature-title">Acessibilidade Total</h3>
+            <p class="feature-desc">Conformidade WCAG AAA, navegação por teclado e leitores de tela sem esforço.</p>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Experiência -->
-      <section class="reveal">
-        <div class="section-label">Trajetória</div>
-        <h2 class="section-title">Experiência</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">2024 — Presente</div>
-            <h3>Security Analyst</h3>
-            <div class="timeline-role">Atual</div>
-            <div class="timeline-description">Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</div>
+    <!-- Projetos -->
+    <section id="projetos" aria-labelledby="projetos-heading">
+      <div class="container">
+        <h2 id="projetos-heading" class="text-center reveal fade-up" style="font-size: var(--font-scale-6); font-weight: var(--weight-bold);">
+          Projetos recentes
+        </h2>
+        <div class="projects-grid">
+          <div class="project-card reveal fade-scale" style="transition-delay: 0.1s;">
+            <div class="project-image" aria-hidden="true">✦</div>
+            <div class="project-info">
+              <h3 style="font-size: var(--font-scale-4);">Nebula Dashboard</h3>
+              <p style="color: var(--color-text-secondary);">Painel analítico com visualizações 3D.</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2022 — 2024</div>
-            <h3>Software Engineer + Reverse Engineering</h3>
-            <div class="timeline-role">Desenvolvimento low-level</div>
-            <div class="timeline-description">Desenvolvimento low-level e estudo intensivo de exploit development e binários.</div>
+          <div class="project-card reveal fade-scale" style="transition-delay: 0.2s;">
+            <div class="project-image" aria-hidden="true">◆</div>
+            <div class="project-info">
+              <h3 style="font-size: var(--font-scale-4);">Eco Store</h3>
+              <p style="color: var(--color-text-secondary);">E-commerce sustentável com microinterações.</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2012 — 2022</div>
-            <h3>Aprendizado autodidata</h3>
-            <div class="timeline-role">Base</div>
-            <div class="timeline-description">Comecei com 12 anos. Passei por várias linguagens até chegar em C, assembly e reverse.</div>
+          <div class="project-card reveal fade-scale" style="transition-delay: 0.3s;">
+            <div class="project-image" aria-hidden="true">⧫</div>
+            <div class="project-info">
+              <h3 style="font-size: var(--font-scale-4);">Aether App</h3>
+              <p style="color: var(--color-text-secondary);">Aplicativo de meditação com UI fluida.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Contato -->
-      <section class="reveal">
-        <div class="section-label">Contato</div>
-        <h2 class="section-title">Vamos conversar</h2>
-        <div class="contact-cards">
-          <div class="contact-card">
-            <div class="contact-info">
-              <h3>Proton Mail</h3>
-              <p>Email principal para contato profissional</p>
-            </div>
-            <button class="copy-btn" data-copy="k1evz@proton.me">k1evz@proton.me</button>
-          </div>
-          <div class="contact-card">
-            <div class="contact-info">
-              <h3>Discord</h3>
-              <p>A forma mais rápida de
+    <!-- Contato -->
+    <section id="contato" aria-labelledby="contato-heading">
+      <div class="container text-center">
+        <h2 id="contato-heading" class="reveal fade-up" style="font-size: var(--font-scale-6); font-weight: var(--weight-bold);">
+          Vamos conversar?
+        </h2>
+        <p class="reveal fade-up" style="color: var(--color-text-secondary); margin: var(--space-md) auto; max-width: 500px; font-size: var(--font-scale-3);">
+          Estamos prontos para transformar sua ideia em realidade.
+        </p>
+        <div class="reveal fade-up" style="transition-delay: 0.1s;">
+          <!-- Botão desabilitado de exemplo -->
+          <button class="btn btn-primary" disabled aria-label="Botão desabilitado de exemplo">Indisponível no momento</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>© 2026 Kievz Studio. Construído com precisão e acessibilidade.</p>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ==============================
+      // MÓDULO 2: TOGGLE MODO ESCURO/CLARO
+      // ==============================
+      const html = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+
+      // Inicializa tema: verifica localStorage, senão usa preferência do sistema
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) {
+        html.setAttribute('data-theme', storedTheme);
+      } else {
+        // Deixar o CSS decidir via prefers-color-scheme
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+          html.setAttribute('data-theme', 'light');
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          html.setAttribute('data-theme', 'dark');
+        } else {
+          html.setAttribute('data-theme', 'dark'); // fallback
+        }
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        // Anuncia mudança para leitores de tela
+        themeToggle.setAttribute('aria-label', `Modo ${next === 'dark' ? 'escuro' : 'claro'} ativado`);
+      });
+
+      // ==============================
+      // MÓDULO 5: INTERSECTION OBSERVER PARA REVELAÇÕES
+      // ==============================
+      const revealElements = document.querySelectorAll('.reveal');
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+      };
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Opcional: parar de observar após revelar
+            // revealObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // ==============================
+      // MÓDULO 4: EFEITO MAGNÉTICO NO BOTÃO PRINCIPAL
+      // ==============================
+      const magneticBtn = document.querySelector('.btn-magnetic');
+      if (magneticBtn) {
+        magneticBtn.addEventListener('mousemove', (e) => {
+          const rect = magneticBtn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const strength = 0.3;
+          magneticBtn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+        });
+        magneticBtn.addEventListener('mouseleave', () => {
+          magneticBtn.style.transform = 'translate(0, 0)';
+        });
+        // Reset no foco para acessibilidade
+        magneticBtn.addEventListener('focus', () => {
+          magneticBtn.style.transform = 'translate(0, 0)';
+        });
+      }
+
+      // ==============================
+      // MÓDULO 4: DEMONSTRAÇÃO DE BOTÃO COM LOADING
+      // ==============================
+      const demoLoadingBtn = document.getElementById('demoLoadingBtn');
+      demoLoadingBtn.addEventListener('click', function() {
+        if (this.classList.contains('btn-loading')) return;
+        this.classList.add('btn-loading');
+        this.setAttribute('aria-busy', 'true');
+        // Simula carregamento de 2 segundos
+        setTimeout(() => {
+          this.classList.remove('btn-loading');
+          this.setAttribute('aria-busy', 'false');
+          alert('✨ Demonstração concluída! O botão agora está funcional novamente.');
+        }, 2000);
+      });
+
+      // ==============================
+      // MÓDULO 6: NAVEGAÇÃO POR TECLADO E FOCO VISÍVEL
+      // ==============================
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          // Fecharia menu mobile se implementado
+          document.activeElement?.blur();
+        }
+      });
+
+      // Garantir que links âncora funcionem suavemente (scroll-behavior já cuida)
+      // Apenas para evitar conflitos com botões que não são links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href').substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Foco no título da seção para acessibilidade
+            const heading = target.querySelector('h1, h2, h3, h4');
+            if (heading) {
+              heading.setAttribute('tabindex', '-1');
+              heading.focus({ preventScroll: true });
+            }
+          }
+        });
+      });
+
+      console.log('🚀 Kievz.cc — Todos os módulos carregados com sucesso. Pronto para inspeção Awwwards.');
+    })();
+  </script>
+</body>
+</html>
