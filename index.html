@@ -17,7 +17,7 @@
       --text-secondary: #a1a1aa;
       --text-muted: #71717a;
       --accent: #a855f7;
-      --accent-soft: rgba(168, 85, 247, 0.12);
+      --accent-soft: rgba(168, 85, 247, 0.15);
       --accent-muted: #c084fc;
     }
 
@@ -52,10 +52,23 @@
       letter-spacing: 0.02em;
       margin-bottom: 64px;
       display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .logo:hover {
+      opacity: 0.7;
     }
 
     .hero {
       margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all 0.7s ease;
+    }
+
+    .hero.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero h1 {
@@ -85,6 +98,14 @@
       margin-bottom: 80px;
       padding-bottom: 80px;
       border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all 0.7s ease 0.1s;
+    }
+
+    .meta.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .meta-item .label {
@@ -99,6 +120,14 @@
 
     section {
       margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all 0.7s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .label {
@@ -164,10 +193,10 @@
       color: var(--text-secondary);
       font-size: 13px;
       font-weight: 500;
-      padding: 7px 13px;
+      padding: 8px 14px;
       border-radius: 6px;
       transition: all 0.2s ease;
-      cursor: default;
+      cursor: pointer;
       user-select: none;
     }
 
@@ -175,6 +204,14 @@
       border-color: var(--accent);
       color: var(--accent-muted);
       background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .tags span.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-muted);
+      box-shadow: 0 0 0 1px var(--accent);
     }
 
     .project {
@@ -189,6 +226,7 @@
     .project:hover {
       border-color: var(--border-hover);
       background: var(--bg-card-hover);
+      transform: translateY(-2px);
     }
 
     .project-num {
@@ -265,6 +303,28 @@
       font-size: 14px;
     }
 
+    /* Info box que aparece ao clicar */
+    .skill-info {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .skill-info.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 40px 20px 80px;
@@ -287,13 +347,13 @@
 
     <div class="logo">&lt;k1evz/&gt;</div>
 
-    <div class="hero">
+    <div class="hero" id="hero">
       <h1>Darwin</h1>
       <div class="role">Security Analyst • Software Engineer</div>
       <div class="loc">Brasil</div>
     </div>
 
-    <div class="meta">
+    <div class="meta" id="meta">
       <div class="meta-item">
         <div class="label">Idiomas</div>
         <p>Português · Inglês</p>
@@ -304,7 +364,7 @@
       </div>
     </div>
 
-    <section>
+    <section id="sobre">
       <div class="label">Sobre</div>
       <h2>Quem sou eu</h2>
       <p>
@@ -325,56 +385,60 @@
       </p>
     </section>
 
-    <section>
+    <section id="stack">
       <div class="label">Stack</div>
       <h2>Tecnologias</h2>
 
       <div class="category">
         <div class="category-title">Core</div>
-        <div class="tags">
-          <span>Reverse Engineering</span>
-          <span>Exploit Development</span>
-          <span>ROP Chains</span>
-          <span>Shellcode</span>
-          <span>Malware Analysis</span>
+        <div class="tags" id="core-tags">
+          <span data-info="Análise de binários, descompilação, compreensão de fluxo de execução e estruturas internas.">Reverse Engineering</span>
+          <span data-info="Desenvolvimento de exploits, exploração de vulnerabilidades e construção de payloads.">Exploit Development</span>
+          <span data-info="Construção de cadeias ROP para bypass de proteções como DEP/NX.">ROP Chains</span>
+          <span data-info="Escrita e otimização de shellcode em x86/x64.">Shellcode</span>
+          <span data-info="Análise estática e dinâmica de malware, extração de IOCs e comportamento.">Malware Analysis</span>
         </div>
+        <div class="skill-info" id="core-info"></div>
       </div>
 
       <div class="category">
         <div class="category-title">Linguagens</div>
-        <div class="tags">
-          <span>C — low-level, memory, systems</span>
-          <span>C++ — Windows API, C2, tools</span>
-          <span>Assembly x86/x64 — ROP, shellcode, reversing</span>
-          <span>Python — automation, tooling, analysis</span>
-          <span>Rust — safe systems programming</span>
+        <div class="tags" id="lang-tags">
+          <span data-info="Low-level, manipulação de memória, sistemas e performance crítica.">C — low-level, memory, systems</span>
+          <span data-info="Windows API, construção de C2, ferramentas e sistemas.">C++ — Windows API, C2, tools</span>
+          <span data-info="ROP, shellcode, reversing e análise de binários.">Assembly x86/x64 — ROP, shellcode, reversing</span>
+          <span data-info="Automação, tooling, scripts de análise e prototipagem.">Python — automation, tooling, analysis</span>
+          <span data-info="Programação de sistemas com segurança de memória.">Rust — safe systems programming</span>
         </div>
+        <div class="skill-info" id="lang-info"></div>
       </div>
 
       <div class="category">
         <div class="category-title">Ferramentas</div>
-        <div class="tags">
-          <span>IDA Pro</span>
-          <span>Ghidra</span>
-          <span>x64dbg</span>
-          <span>GDB</span>
-          <span>WinDbg</span>
-          <span>Binary Ninja</span>
+        <div class="tags" id="tool-tags">
+          <span data-info="Descompilador e analisador estático principal.">IDA Pro</span>
+          <span data-info="Descompilador open-source usado no dia a dia.">Ghidra</span>
+          <span data-info="Debugger nativo para Windows x64.">x64dbg</span>
+          <span data-info="Debugger padrão em ambientes Linux.">GDB</span>
+          <span data-info="Debugger avançado da Microsoft para kernel e user-mode.">WinDbg</span>
+          <span data-info="Análise estática moderna e interface limpa.">Binary Ninja</span>
         </div>
+        <div class="skill-info" id="tool-info"></div>
       </div>
 
       <div class="category">
         <div class="category-title">Infra & Outros</div>
-        <div class="tags">
-          <span>C2 Frameworks</span>
-          <span>Linux Internals</span>
-          <span>Windows Internals</span>
-          <span>Memory Forensics</span>
+        <div class="tags" id="infra-tags">
+          <span data-info="Construção e operação de infraestrutura de Command & Control.">C2 Frameworks</span>
+          <span data-info="Internals do kernel e userland Linux.">Linux Internals</span>
+          <span data-info="Internals do Windows, APIs e estruturas de memória.">Windows Internals</span>
+          <span data-info="Análise de memória, dumps e forense de processos.">Memory Forensics</span>
         </div>
+        <div class="skill-info" id="infra-info"></div>
       </div>
     </section>
 
-    <section>
+    <section id="projetos">
       <div class="label">Projetos</div>
       <h2>Trabalhos selecionados</h2>
       <p class="muted" style="margin-bottom: 28px;">Algumas coisas que construí ou estudei a fundo ao longo do tempo.</p>
@@ -401,7 +465,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="trajetoria">
       <div class="label">Trajetória</div>
       <h2>Caminho</h2>
 
@@ -429,5 +493,54 @@
     </footer>
 
   </div>
+
+  <script>
+    // Animação de entrada
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.hero, .meta, section').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Força o hero e meta a aparecerem logo
+    window.addEventListener('load', () => {
+      document.getElementById('hero').classList.add('visible');
+      setTimeout(() => {
+        document.getElementById('meta').classList.add('visible');
+      }, 150);
+    });
+
+    // Sistema de clique nos botões de habilidade
+    function setupTags(tagContainerId, infoId) {
+      const tags = document.querySelectorAll(`#${tagContainerId} span`);
+      const infoBox = document.getElementById(infoId);
+
+      tags.forEach(tag => {
+        tag.addEventListener('click', () => {
+          // Remove active de todos
+          tags.forEach(t => t.classList.remove('active'));
+          
+          // Ativa o clicado
+          tag.classList.add('active');
+          
+          // Mostra a informação
+          const info = tag.getAttribute('data-info');
+          infoBox.textContent = info;
+          infoBox.classList.add('show');
+        });
+      });
+    }
+
+    setupTags('core-tags', 'core-info');
+    setupTags('lang-tags', 'lang-info');
+    setupTags('tool-tags', 'tool-info');
+    setupTags('infra-tags', 'infra-info');
+  </script>
 </body>
 </html>
