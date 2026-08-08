@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>k1evz — Darwin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #09090b;
-      --bg-card: #111113;
-      --bg-elevated: #18181b;
-      --border: #27272a;
-      --text: #fafafa;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
-      --accent: #a855f7;
-      --accent-soft: rgba(168, 85, 247, 0.15);
+      --bg: #0c0614;
+      --card: #140b1f;
+      --card-hover: #1a1029;
+      --border: #2a1b3d;
+      --text: #f5f0ff;
+      --text-secondary: #c4b5d9;
+      --text-muted: #8b7a9e;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --accent: #c084fc;
     }
 
     * {
@@ -26,15 +27,20 @@
 
     body {
       background: var(--bg);
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(168, 85, 247, 0.18), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(236, 72, 153, 0.12), transparent),
+        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(139, 92, 246, 0.08), transparent);
       color: var(--text);
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      padding: 40px 20px 80px;
+      line-height: 1.65;
+      padding: 40px 20px 100px;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
 
     .container {
-      max-width: 720px;
+      max-width: 740px;
       margin: 0 auto;
     }
 
@@ -43,271 +49,414 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
 
     .logo {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--accent);
+      font-size: 16px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #c084fc, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.3px;
     }
 
-    .github-btn {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
+    .discord-badge {
       display: flex;
       align-items: center;
-      gap: 6px;
-      cursor: default;
+      gap: 8px;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #d8b4fe;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    /* Profile */
-    .profile {
-      margin-bottom: 48px;
+    .discord-badge:hover {
+      background: rgba(168, 85, 247, 0.22);
+      border-color: rgba(168, 85, 247, 0.55);
+      transform: translateY(-1px);
     }
 
-    .profile h1 {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.8px;
+    .discord-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 52px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #f5f0ff 30%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .role {
+      font-size: 17px;
+      color: var(--text-secondary);
+      font-weight: 500;
       margin-bottom: 6px;
     }
 
-    .profile .role {
-      font-size: 16px;
-      color: var(--text-secondary);
-      margin-bottom: 8px;
-    }
-
-    .profile .location {
+    .hero .location {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 20px;
+      margin-bottom: 28px;
     }
 
-    .badges {
+    .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 24px;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+    .h-badge {
+      padding: 7px 13px;
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text-secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid;
+      letter-spacing: 0.2px;
     }
 
-    .badge.purple { border-color: #7c3aed; color: #c4b5fd; background: rgba(124, 58, 237, 0.1); }
-    .badge.blue { border-color: #3b82f6; color: #93c5fd; background: rgba(59, 130, 246, 0.1); }
-    .badge.green { border-color: #22c55e; color: #86efac; background: rgba(34, 197, 94, 0.1); }
-    .badge.orange { border-color: #f97316; color: #fdba74; background: rgba(249, 115, 22, 0.1); }
-    .badge.red { border-color: #ef4444; color: #fca5a5; background: rgba(239, 68, 68, 0.1); }
-    .badge.cyan { border-color: #06b6d4; color: #67e8f9; background: rgba(6, 182, 212, 0.1); }
-    .badge.pink { border-color: #ec4899; color: #f9a8d4; background: rgba(236, 72, 153, 0.1); }
+    .h-badge.purple { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); color: #d8b4fe; }
+    .h-badge.pink { background: rgba(236,72,153,0.15); border-color: rgba(236,72,153,0.4); color: #f9a8d4; }
+    .h-badge.blue { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #93c5fd; }
+    .h-badge.cyan { background: rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.4); color: #67e8f9; }
+    .h-badge.green { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .h-badge.orange { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.4); color: #fdba74; }
+    .h-badge.red { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
 
     /* Stats */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
 
-    .stat-card {
-      background: var(--bg-card);
+    .stat {
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 16px;
+      border-radius: 14px;
+      padding: 22px 16px;
       text-align: center;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .stat-card .number {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -1px;
+    .stat::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(236,72,153,0.05));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .stat:hover {
+      border-color: rgba(168,85,247,0.45);
+      transform: translateY(-3px);
+    }
+
+    .stat:hover::before {
+      opacity: 1;
+    }
+
+    .stat .num {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      background: linear-gradient(135deg, #e9d5ff, #f9a8d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 4px;
+      position: relative;
     }
 
-    .stat-card .label {
-      font-size: 13px;
+    .stat .label {
+      font-size: 12.5px;
       color: var(--text-muted);
+      font-weight: 500;
+      position: relative;
     }
 
     /* Sections */
     section {
-      margin-bottom: 56px;
+      margin-bottom: 60px;
     }
 
-    .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      color: var(--purple);
+      margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: 750;
+      letter-spacing: -0.6px;
+      margin-bottom: 22px;
     }
 
     p {
       color: var(--text-secondary);
-      font-size: 15px;
-      margin-bottom: 14px;
-      line-height: 1.7;
+      font-size: 15.5px;
+      margin-bottom: 15px;
+      line-height: 1.75;
     }
 
     p strong {
       color: var(--text);
+      font-weight: 600;
     }
 
-    /* Skills Grid */
+    /* Skills */
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 28px;
     }
 
-    .skill-group h3 {
+    .skill-box h3 {
       font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    .skill-tags {
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .skill-tag {
-      padding: 6px 11px;
-      border-radius: 6px;
+    .tag {
+      padding: 7px 12px;
+      border-radius: 8px;
       font-size: 13px;
       font-weight: 500;
-      background: var(--bg-elevated);
+      background: var(--card);
       border: 1px solid var(--border);
       color: var(--text-secondary);
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.18s;
+      user-select: none;
     }
 
-    .skill-tag:hover,
-    .skill-tag.active {
-      border-color: var(--accent);
-      color: #c4b5fd;
-      background: var(--accent-soft);
+    .tag:hover, .tag.active {
+      border-color: var(--purple);
+      background: rgba(168,85,247,0.12);
+      color: #e9d5ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(168,85,247,0.15);
     }
 
-    .skill-desc {
+    .skill-info {
       margin-top: 14px;
-      padding: 12px 14px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 13px;
+      padding: 13px 15px;
+      background: rgba(168,85,247,0.08);
+      border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 10px;
+      font-size: 13.5px;
       color: var(--text-secondary);
       display: none;
+      line-height: 1.5;
     }
 
-    .skill-desc.show {
+    .skill-info.show {
       display: block;
+      animation: fadeUp 0.25s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Projects */
     .project {
-      background: var(--bg-card);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 12px;
-      transition: all 0.2s;
+      border-radius: 14px;
+      padding: 26px 28px;
+      margin-bottom: 14px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--purple), var(--pink));
+      opacity: 0;
+      transition: opacity 0.25s;
     }
 
     .project:hover {
-      border-color: #3f3f46;
-      background: #131316;
+      border-color: rgba(168,85,247,0.4);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .project:hover::before {
+      opacity: 1;
     }
 
     .project .num {
       font-size: 12px;
-      color: var(--accent);
-      font-weight: 600;
+      font-weight: 700;
+      color: var(--purple);
       margin-bottom: 8px;
+      letter-spacing: 0.5px;
     }
 
     .project h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
     }
 
     .project p {
-      font-size: 14px;
-      margin-bottom: 14px;
+      font-size: 14.5px;
+      margin-bottom: 16px;
     }
 
     .project .tech {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-muted);
+      font-weight: 500;
     }
 
     /* Experience */
-    .exp-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
+    .exp {
+      position: relative;
+      padding-left: 24px;
+      border-left: 2px solid var(--border);
+      margin-bottom: 28px;
     }
 
-    .exp-item:last-child {
-      border-bottom: none;
+    .exp:last-child {
+      margin-bottom: 0;
     }
 
-    .exp-date {
+    .exp::before {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      box-shadow: 0 0 12px rgba(168,85,247,0.5);
+    }
+
+    .exp .date {
       font-size: 13px;
-      color: var(--accent);
-      font-weight: 500;
+      font-weight: 600;
+      color: var(--purple);
       margin-bottom: 6px;
     }
 
-    .exp-item h3 {
+    .exp h3 {
       font-size: 17px;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
     }
 
-    .exp-item .company {
-      font-size: 14px;
+    .exp .sub {
+      font-size: 13.5px;
       color: var(--text-muted);
       margin-bottom: 10px;
     }
 
-    .exp-item p {
-      font-size: 14px;
+    .exp p {
+      font-size: 14.5px;
       margin-bottom: 0;
     }
 
+    /* Discord Card */
+    .discord-card {
+      background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.08));
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .discord-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .discord-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .discord-username {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(168,85,247,0.35);
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #e9d5ff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .discord-username:hover {
+      background: rgba(168,85,247,0.15);
+      border-color: rgba(168,85,247,0.55);
+      transform: scale(1.02);
+    }
+
+    .discord-username .copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
     footer {
-      margin-top: 60px;
+      margin-top: 80px;
       padding-top: 30px;
       border-top: 1px solid var(--border);
       text-align: center;
@@ -315,16 +464,19 @@
       font-size: 13px;
     }
 
-    @media (max-width: 600px) {
-      .stats {
-        grid-template-columns: 1fr 1fr;
-      }
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-      .profile h1 {
-        font-size: 28px;
-      }
+    footer span {
+      background: linear-gradient(135deg, #c084fc, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .project { padding: 22px; }
     }
   </style>
 </head>
@@ -334,58 +486,60 @@
     <!-- Header -->
     <div class="header">
       <div class="logo">&lt;k1evz/&gt;</div>
-      <div class="github-btn">
-        <span>GitHub</span>
+      <div class="discord-badge" onclick="copyDiscord()">
+        <div class="dot"></div>
+        Discord: k1evz
       </div>
     </div>
 
-    <!-- Profile -->
-    <div class="profile">
+    <!-- Hero -->
+    <div class="hero">
       <h1>Darwin</h1>
       <div class="role">Security Analyst • Software Engineer</div>
       <div class="location">Brasil</div>
 
-      <div class="badges">
-        <span class="badge purple">Reverse Engineering</span>
-        <span class="badge red">Exploit Development</span>
-        <span class="badge blue">C / C++</span>
-        <span class="badge cyan">Assembly</span>
-        <span class="badge green">Malware Analysis</span>
-        <span class="badge orange">Windows Internals</span>
+      <div class="hero-badges">
+        <span class="h-badge purple">Reverse Engineering</span>
+        <span class="h-badge pink">Exploit Development</span>
+        <span class="h-badge blue">C / C++</span>
+        <span class="h-badge cyan">Assembly x86/x64</span>
+        <span class="h-badge green">Malware Analysis</span>
+        <span class="h-badge orange">Windows Internals</span>
+        <span class="h-badge red">ROP & Shellcode</span>
       </div>
     </div>
 
     <!-- Stats -->
     <div class="stats">
-      <div class="stat-card">
-        <div class="number">14</div>
+      <div class="stat">
+        <div class="num">14</div>
         <div class="label">Anos de experiência</div>
       </div>
-      <div class="stat-card">
-        <div class="number">30+</div>
+      <div class="stat">
+        <div class="num">30+</div>
         <div class="label">Projetos</div>
       </div>
-      <div class="stat-card">
-        <div class="number">3</div>
+      <div class="stat">
+        <div class="num">3</div>
         <div class="label">Principais</div>
       </div>
-      <div class="stat-card">
-        <div class="number">8</div>
-        <div class="label">Ferramentas</div>
+      <div class="stat">
+        <div class="num">8</div>
+        <div class="label">Ferramentas core</div>
       </div>
-      <div class="stat-card">
-        <div class="number">2</div>
-        <div class="label">Linguagens core</div>
+      <div class="stat">
+        <div class="num">5</div>
+        <div class="label">Linguagens</div>
       </div>
-      <div class="stat-card">
-        <div class="number">∞</div>
+      <div class="stat">
+        <div class="num">∞</div>
         <div class="label">Curiosity</div>
       </div>
     </div>
 
     <!-- Sobre -->
     <section>
-      <div class="section-title">Sobre</div>
+      <div class="section-label">Sobre</div>
       <h2>Quem sou eu</h2>
       <p>
         Sou o Darwin, mas a galera me chama de <strong>kiev</strong> ou <strong>dex</strong>. 
@@ -399,67 +553,71 @@
         Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. 
         Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.
       </p>
+      <p>
+        No dia a dia uso principalmente C/C++, assembly e debuggers. 
+        Gosto de ir fundo em low-level e em como o sistema realmente se comporta.
+      </p>
     </section>
 
     <!-- Stack -->
     <section>
-      <div class="section-title">Stack</div>
+      <div class="section-label">Stack</div>
       <h2>Tecnologias</h2>
 
       <div class="skills-grid">
-        <div class="skill-group">
+        <div class="skill-box">
           <h3>Core</h3>
-          <div class="skill-tags" id="core">
-            <span class="skill-tag" data-desc="Análise profunda de binários, descompilação e compreensão de fluxo de execução.">Reverse Engineering</span>
-            <span class="skill-tag" data-desc="Desenvolvimento de exploits e exploração de vulnerabilidades em software.">Exploit Development</span>
-            <span class="skill-tag" data-desc="Construção de cadeias ROP para bypass de proteções de memória.">ROP Chains</span>
-            <span class="skill-tag" data-desc="Escrita e otimização de shellcode x86/x64.">Shellcode</span>
-            <span class="skill-tag" data-desc="Análise estática e dinâmica de malware.">Malware Analysis</span>
+          <div class="tags" id="core">
+            <span class="tag" data-info="Análise profunda de binários, descompilação e compreensão de fluxo de execução.">Reverse Engineering</span>
+            <span class="tag" data-info="Desenvolvimento de exploits e exploração de vulnerabilidades.">Exploit Development</span>
+            <span class="tag" data-info="Construção de cadeias ROP para bypass de proteções.">ROP Chains</span>
+            <span class="tag" data-info="Escrita e otimização de shellcode x86/x64.">Shellcode</span>
+            <span class="tag" data-info="Análise estática e dinâmica de malware.">Malware Analysis</span>
           </div>
-          <div class="skill-desc" id="core-desc"></div>
+          <div class="skill-info" id="core-info"></div>
         </div>
 
-        <div class="skill-group">
+        <div class="skill-box">
           <h3>Linguagens</h3>
-          <div class="skill-tags" id="langs">
-            <span class="skill-tag" data-desc="Low-level, manipulação de memória e sistemas.">C</span>
-            <span class="skill-tag" data-desc="Windows API, C2 e ferramentas de sistema.">C++</span>
-            <span class="skill-tag" data-desc="ROP, shellcode e reversing.">Assembly</span>
-            <span class="skill-tag" data-desc="Automação, tooling e análise.">Python</span>
-            <span class="skill-tag" data-desc="Programação de sistemas segura.">Rust</span>
+          <div class="tags" id="langs">
+            <span class="tag" data-info="Low-level, manipulação de memória e sistemas.">C</span>
+            <span class="tag" data-info="Windows API, C2 e ferramentas de sistema.">C++</span>
+            <span class="tag" data-info="ROP, shellcode e reversing.">Assembly</span>
+            <span class="tag" data-info="Automação, tooling e análise.">Python</span>
+            <span class="tag" data-info="Programação de sistemas com segurança de memória.">Rust</span>
           </div>
-          <div class="skill-desc" id="langs-desc"></div>
+          <div class="skill-info" id="langs-info"></div>
         </div>
 
-        <div class="skill-group">
+        <div class="skill-box">
           <h3>Ferramentas</h3>
-          <div class="skill-tags" id="tools">
-            <span class="skill-tag" data-desc="Descompilador principal.">IDA Pro</span>
-            <span class="skill-tag" data-desc="Descompilador open-source.">Ghidra</span>
-            <span class="skill-tag" data-desc="Debugger Windows x64.">x64dbg</span>
-            <span class="skill-tag" data-desc="Debugger Linux.">GDB</span>
-            <span class="skill-tag" data-desc="Debugger Microsoft.">WinDbg</span>
-            <span class="skill-tag" data-desc="Análise estática moderna.">Binary Ninja</span>
+          <div class="tags" id="tools">
+            <span class="tag" data-info="Descompilador principal.">IDA Pro</span>
+            <span class="tag" data-info="Descompilador open-source.">Ghidra</span>
+            <span class="tag" data-info="Debugger Windows x64.">x64dbg</span>
+            <span class="tag" data-info="Debugger Linux.">GDB</span>
+            <span class="tag" data-info="Debugger Microsoft.">WinDbg</span>
+            <span class="tag" data-info="Análise estática moderna.">Binary Ninja</span>
           </div>
-          <div class="skill-desc" id="tools-desc"></div>
+          <div class="skill-info" id="tools-info"></div>
         </div>
 
-        <div class="skill-group">
-          <h3>Infra</h3>
-          <div class="skill-tags" id="infra">
-            <span class="skill-tag" data-desc="Infraestrutura de Command & Control.">C2 Frameworks</span>
-            <span class="skill-tag" data-desc="Internals do Linux.">Linux Internals</span>
-            <span class="skill-tag" data-desc="Internals do Windows.">Windows Internals</span>
-            <span class="skill-tag" data-desc="Análise de memória e forense.">Memory Forensics</span>
+        <div class="skill-box">
+          <h3>Infra & Outros</h3>
+          <div class="tags" id="infra">
+            <span class="tag" data-info="Infraestrutura de Command & Control.">C2 Frameworks</span>
+            <span class="tag" data-info="Internals do Linux.">Linux Internals</span>
+            <span class="tag" data-info="Internals do Windows.">Windows Internals</span>
+            <span class="tag" data-info="Análise de memória e forense.">Memory Forensics</span>
           </div>
-          <div class="skill-desc" id="infra-desc"></div>
+          <div class="skill-info" id="infra-info"></div>
         </div>
       </div>
     </section>
 
     <!-- Projetos -->
     <section>
-      <div class="section-title">Projetos</div>
+      <div class="section-label">Projetos</div>
       <h2>Trabalhos selecionados</h2>
 
       <div class="project">
@@ -486,56 +644,82 @@
 
     <!-- Experiência -->
     <section>
-      <div class="section-title">Trajetória</div>
+      <div class="section-label">Trajetória</div>
       <h2>Experiência</h2>
 
-      <div class="exp-item">
-        <div class="exp-date">2024 — Presente</div>
+      <div class="exp">
+        <div class="date">2024 — Presente</div>
         <h3>Security Analyst</h3>
-        <div class="company">Atual</div>
+        <div class="sub">Atual</div>
         <p>Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</p>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-date">2022 — 2024</div>
+      <div class="exp">
+        <div class="date">2022 — 2024</div>
         <h3>Software Engineer + Reverse Engineering</h3>
-        <div class="company">Desenvolvimento low-level</div>
+        <div class="sub">Desenvolvimento low-level</div>
         <p>Desenvolvimento low-level e estudo intensivo de exploit development e binários.</p>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-date">2012 — 2022</div>
+      <div class="exp">
+        <div class="date">2012 — 2022</div>
         <h3>Aprendizado autodidata</h3>
-        <div class="company">Base</div>
+        <div class="sub">Base</div>
         <p>Comecei com 12 anos. Passei por várias linguagens até chegar em C, assembly e reverse.</p>
       </div>
     </section>
 
+    <!-- Discord -->
+    <section>
+      <div class="section-label">Contato</div>
+      <h2>Discord</h2>
+      <div class="discord-card">
+        <h3>Me chama no Discord</h3>
+        <p>A forma mais rápida de entrar em contato</p>
+        <div class="discord-username" onclick="copyDiscord()">
+          k1evz
+          <span class="copy" id="copy-text">clique para copiar</span>
+        </div>
+      </div>
+    </section>
+
     <footer>
-      k1evz · Darwin
+      <span>k1evz</span> · Darwin
     </footer>
 
   </div>
 
   <script>
-    function setupSkillGroup(groupId, descId) {
-      const tags = document.querySelectorAll(`#${groupId} .skill-tag`);
-      const desc = document.getElementById(descId);
+    // Sistema de clique nas skills
+    function setupGroup(groupId, infoId) {
+      const tags = document.querySelectorAll(`#${groupId} .tag`);
+      const info = document.getElementById(infoId);
 
       tags.forEach(tag => {
         tag.addEventListener('click', () => {
           tags.forEach(t => t.classList.remove('active'));
           tag.classList.add('active');
-          desc.textContent = tag.getAttribute('data-desc');
-          desc.classList.add('show');
+          info.textContent = tag.dataset.info;
+          info.classList.add('show');
         });
       });
     }
 
-    setupSkillGroup('core', 'core-desc');
-    setupSkillGroup('langs', 'langs-desc');
-    setupSkillGroup('tools', 'tools-desc');
-    setupSkillGroup('infra', 'infra-desc');
+    setupGroup('core', 'core-info');
+    setupGroup('langs', 'langs-info');
+    setupGroup('tools', 'tools-info');
+    setupGroup('infra', 'infra-info');
+
+    // Copiar Discord
+    function copyDiscord() {
+      navigator.clipboard.writeText('k1evz').then(() => {
+        const el = document.getElementById('copy-text');
+        if (el) {
+          el.textContent = 'copiado!';
+          setTimeout(() => el.textContent = 'clique para copiar', 1500);
+        }
+      });
+    }
   </script>
 </body>
 </html>
