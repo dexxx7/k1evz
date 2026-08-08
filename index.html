@@ -50,6 +50,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 56px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -62,7 +64,13 @@
       letter-spacing: 0.3px;
     }
 
-    .discord-badge {
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-btn {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -75,15 +83,16 @@
       color: #d8b4fe;
       cursor: pointer;
       transition: all 0.2s;
+      text-decoration: none;
     }
 
-    .discord-badge:hover {
+    .header-btn:hover {
       background: rgba(168, 85, 247, 0.22);
       border-color: rgba(168, 85, 247, 0.55);
       transform: translateY(-1px);
     }
 
-    .discord-badge .dot {
+    .header-btn .dot {
       width: 8px;
       height: 8px;
       background: #22c55e;
@@ -406,29 +415,29 @@
       margin-bottom: 0;
     }
 
-    /* Discord Card */
-    .discord-card {
+    /* Contact Cards */
+    .contact-card {
       background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.08));
       border: 1px solid rgba(168,85,247,0.3);
       border-radius: 16px;
       padding: 28px;
       text-align: center;
-      margin-top: 20px;
+      margin-bottom: 16px;
     }
 
-    .discord-card h3 {
+    .contact-card h3 {
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 8px;
     }
 
-    .discord-card p {
+    .contact-card p {
       font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 18px;
     }
 
-    .discord-username {
+    .contact-value {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -441,15 +450,16 @@
       color: #e9d5ff;
       cursor: pointer;
       transition: all 0.2s;
+      user-select: none;
     }
 
-    .discord-username:hover {
+    .contact-value:hover {
       background: rgba(168,85,247,0.15);
       border-color: rgba(168,85,247,0.55);
       transform: scale(1.02);
     }
 
-    .discord-username .copy {
+    .contact-value .copy {
       font-size: 12px;
       color: var(--text-muted);
       font-weight: 500;
@@ -486,9 +496,12 @@
     <!-- Header -->
     <div class="header">
       <div class="logo">&lt;k1evz/&gt;</div>
-      <div class="discord-badge" onclick="copyDiscord()">
-        <div class="dot"></div>
-        Discord: k1evz
+      <div class="header-buttons">
+        <a href="mailto:k1evz@proton.me" class="header-btn">Proton Mail</a>
+        <div class="header-btn" onclick="copyDiscord()">
+          <div class="dot"></div>
+          Discord
+        </div>
       </div>
     </div>
 
@@ -669,14 +682,24 @@
       </div>
     </section>
 
-    <!-- Discord -->
+    <!-- Contato -->
     <section>
       <div class="section-label">Contato</div>
-      <h2>Discord</h2>
-      <div class="discord-card">
-        <h3>Me chama no Discord</h3>
-        <p>A forma mais rápida de entrar em contato</p>
-        <div class="discord-username" onclick="copyDiscord()">
+      <h2>Vamos conversar</h2>
+
+      <div class="contact-card">
+        <h3>Proton Mail</h3>
+        <p>Email principal para contato profissional</p>
+        <div class="contact-value" onclick="copyEmail()">
+          k1evz@proton.me
+          <span class="copy" id="copy-email-text">clique para copiar</span>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3>Discord</h3>
+        <p>A forma mais rápida de me chamar</p>
+        <div class="contact-value" onclick="copyDiscord()">
           k1evz
           <span class="copy" id="copy-text">clique para copiar</span>
         </div>
@@ -690,7 +713,7 @@
   </div>
 
   <script>
-    // Sistema de clique nas skills
+    // Skills
     function setupGroup(groupId, infoId) {
       const tags = document.querySelectorAll(`#${groupId} .tag`);
       const info = document.getElementById(infoId);
@@ -714,6 +737,17 @@
     function copyDiscord() {
       navigator.clipboard.writeText('k1evz').then(() => {
         const el = document.getElementById('copy-text');
+        if (el) {
+          el.textContent = 'copiado!';
+          setTimeout(() => el.textContent = 'clique para copiar', 1500);
+        }
+      });
+    }
+
+    // Copiar Email
+    function copyEmail() {
+      navigator.clipboard.writeText('k1evz@proton.me').then(() => {
+        const el = document.getElementById('copy-email-text');
         if (el) {
           el.textContent = 'copiado!';
           setTimeout(() => el.textContent = 'clique para copiar', 1500);
