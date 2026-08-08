@@ -32,7 +32,7 @@
     }
 
     header {
-      margin-bottom: 5rem;
+      margin-bottom: 4rem;
     }
     .name {
       font-size: clamp(2.4rem, 6vw, 3.4rem);
@@ -46,12 +46,16 @@
     .role {
       font-size: 1.15rem;
       color: var(--muted);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
     .bio {
       font-size: 1.05rem;
       color: #cbd5e1;
-      max-width: 620px;
+      max-width: 680px;
+      line-height: 1.7;
+    }
+    .bio p {
+      margin-bottom: 1rem;
     }
 
     section {
@@ -100,6 +104,9 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.22s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
     }
     .tag:hover {
       transform: translateY(-2px);
@@ -109,6 +116,13 @@
     .tag.active {
       outline: 2px solid #f9a8d4;
       box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.25);
+    }
+    .level {
+      font-size: 0.72rem;
+      background: rgba(0,0,0,0.25);
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      font-weight: 600;
     }
     .tag-detail {
       display: none;
@@ -201,11 +215,18 @@
     <header>
       <div class="name">Darwin</div>
       <div class="role">Security Analyst • Software Engineer</div>
-      <p class="bio">
-        Foco em Reverse Engineering e Exploit Development.  
-        Trabalho com ROP, shellcode, malware analysis e infraestrutura de C2.  
-        C/C++, Assembly, Windows & Linux Internals.
-      </p>
+      <div class="bio">
+        <p>Olá, galera. Boa noite!<br>
+        Sou o Darwin, podem me chamar de kiev ou dex.</p>
+
+        <p>Trabalho como Security Analyst e também atuo como Software Engineer. Estudo programação desde os 12 anos.</p>
+
+        <p>Meu foco principal é Reverse Engineering e Exploit Development. Tenho experiência com ROP, shellcode e desenvolvimento de infraestrutura de C2.</p>
+
+        <p>Uso bastante C/C++, tenho boa base em memória e assembly, e trabalho constantemente com debuggers e ferramentas de engenharia reversa.</p>
+
+        <p>Sempre buscando evoluir.</p>
+      </div>
     </header>
 
     <!-- STACK -->
@@ -216,11 +237,11 @@
       <div class="stack-group">
         <h3>Core</h3>
         <div class="tags">
-          <button class="tag" data-detail="reverse">Reverse Engineering</button>
-          <button class="tag" data-detail="exploit">Exploit Development</button>
-          <button class="tag" data-detail="rop">ROP Chains</button>
-          <button class="tag" data-detail="shellcode">Shellcode</button>
-          <button class="tag" data-detail="malware">Malware Analysis</button>
+          <button class="tag" data-detail="reverse">Reverse Engineering <span class="level">Expert</span></button>
+          <button class="tag" data-detail="exploit">Exploit Development <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="rop">ROP Chains <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="shellcode">Shellcode <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="malware">Malware Analysis <span class="level">Advanced</span></button>
         </div>
         <div class="tag-detail" id="detail-core"></div>
       </div>
@@ -228,11 +249,11 @@
       <div class="stack-group">
         <h3>Linguagens</h3>
         <div class="tags">
-          <button class="tag" data-detail="c">C</button>
-          <button class="tag" data-detail="cpp">C++</button>
-          <button class="tag" data-detail="asm">Assembly</button>
-          <button class="tag" data-detail="python">Python</button>
-          <button class="tag" data-detail="rust">Rust</button>
+          <button class="tag" data-detail="c">C <span class="level">Expert</span></button>
+          <button class="tag" data-detail="cpp">C++ <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="asm">Assembly <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="python">Python <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="rust">Rust <span class="level">Intermediate</span></button>
         </div>
         <div class="tag-detail" id="detail-lang"></div>
       </div>
@@ -240,12 +261,12 @@
       <div class="stack-group">
         <h3>Ferramentas</h3>
         <div class="tags">
-          <button class="tag" data-detail="ida">IDA Pro</button>
-          <button class="tag" data-detail="ghidra">Ghidra</button>
-          <button class="tag" data-detail="x64dbg">x64dbg</button>
-          <button class="tag" data-detail="gdb">GDB</button>
-          <button class="tag" data-detail="windbg">WinDbg</button>
-          <button class="tag" data-detail="binja">Binary Ninja</button>
+          <button class="tag" data-detail="ida">IDA Pro <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="ghidra">Ghidra <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="x64dbg">x64dbg <span class="level">Expert</span></button>
+          <button class="tag" data-detail="gdb">GDB <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="windbg">WinDbg <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="binja">Binary Ninja <span class="level">Intermediate</span></button>
         </div>
         <div class="tag-detail" id="detail-tools"></div>
       </div>
@@ -253,10 +274,10 @@
       <div class="stack-group">
         <h3>Infra & Outros</h3>
         <div class="tags">
-          <button class="tag" data-detail="c2">C2 Frameworks</button>
-          <button class="tag" data-detail="linux">Linux Internals</button>
-          <button class="tag" data-detail="windows">Windows Internals</button>
-          <button class="tag" data-detail="memory">Memory Forensics</button>
+          <button class="tag" data-detail="c2">C2 Frameworks <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="linux">Linux Internals <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="windows">Windows Internals <span class="level">Advanced</span></button>
+          <button class="tag" data-detail="memory">Memory Forensics <span class="level">Advanced</span></button>
         </div>
         <div class="tag-detail" id="detail-infra"></div>
       </div>
@@ -323,7 +344,6 @@
       <div class="contact-card">
         <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
           
-          <!-- Discord -->
           <a href="https://discord.com/users/k1evz" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: white; background: linear-gradient(135deg, #7c3aed, #ec4899); padding: 0.7rem 1.3rem; border-radius: 12px; font-weight: 600; transition: all 0.2s;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.548-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
@@ -331,7 +351,6 @@
             k1evz
           </a>
 
-          <!-- Proton Mail -->
           <a href="mailto:k1evz@proton.me" style="display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: white; background: linear-gradient(135deg, #7c3aed, #ec4899); padding: 0.7rem 1.3rem; border-radius: 12px; font-weight: 600; transition: all 0.2s;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -388,4 +407,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
