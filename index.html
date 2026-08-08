@@ -1,380 +1,600 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>k1evz — Darwin | Security Analyst & Reverse Engineer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>k1evz — Darwin</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bg: '#0c0614',
-            card: '#140b1f',
-            'card-hover': '#1a1029',
-            border: '#2a1b3d',
-            purple: '#a855f7',
-            pink: '#ec4899',
-            accent: '#c084fc',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
   <style>
+    :root {
+      --bg: #0c0614;
+      --card: #140b1f;
+      --card-hover: #1a1029;
+      --border: #2a1b3d;
+      --text: #f5f0ff;
+      --text-secondary: #c4b5d9;
+      --text-muted: #8b7a9e;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --accent: #c084fc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      background: #0c0614;
+      background: var(--bg);
       background-image: 
         radial-gradient(ellipse 80% 50% at 20% -10%, rgba(168, 85, 247, 0.18), transparent),
         radial-gradient(ellipse 60% 40% at 80% 10%, rgba(236, 72, 153, 0.12), transparent),
         radial-gradient(ellipse 50% 30% at 50% 100%, rgba(139, 92, 246, 0.08), transparent);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      padding: 40px 20px 100px;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg, #f5f0ff 20%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .container { max-width: 740px; margin: 0 auto; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 56px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .gradient-logo {
+    .logo {
+      font-size: 16px;
+      font-weight: 700;
       background: linear-gradient(135deg, #c084fc, #ec4899);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .skill-tag {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    .header-buttons { display: flex; gap: 10px; }
+
+    .header-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      color: #d8b4fe;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
     }
 
-    .skill-tag:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.25);
+    .header-btn:hover {
+      background: rgba(168, 85, 247, 0.22);
+      border-color: rgba(168, 85, 247, 0.55);
+      transform: translateY(-1px);
     }
 
-    .skill-tag.active {
-      background: rgba(168, 85, 247, 0.2) !important;
-      border-color: #a855f7 !important;
-      color: #e9d5ff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+    .hero { margin-bottom: 52px; }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #f5f0ff 30%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .detail-panel {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    .hero .role {
+      font-size: 17px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 6px;
     }
 
-    .detail-panel.open {
-      max-height: 600px;
-      opacity: 1;
-      margin-top: 1rem;
+    .hero .location {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
     }
 
-    .level-bar {
-      height: 6px;
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .h-badge {
+      padding: 7px 13px;
       border-radius: 999px;
-      background: rgba(168, 85, 247, 0.15);
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid;
+    }
+
+    .h-badge.purple { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); color: #d8b4fe; }
+    .h-badge.pink { background: rgba(236,72,153,0.15); border-color: rgba(236,72,153,0.4); color: #f9a8d4; }
+    .h-badge.blue { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #93c5fd; }
+    .h-badge.cyan { background: rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.4); color: #67e8f9; }
+    .h-badge.green { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .h-badge.orange { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.4); color: #fdba74; }
+    .h-badge.red { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      transition: all 0.25s;
+      position: relative;
       overflow: hidden;
     }
 
-    .level-fill {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #a855f7, #ec4899);
-      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .project-card {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-      border-color: rgba(168, 85, 247, 0.5);
-    }
-
-    .project-card::before {
+    .stat::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, #a855f7, #ec4899);
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(236,72,153,0.05));
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s;
     }
 
-    .project-card:hover::before {
-      opacity: 1;
+    .stat:hover {
+      border-color: rgba(168,85,247,0.45);
+      transform: translateY(-3px);
     }
 
-    .stat-card {
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    .stat:hover::before { opacity: 1; }
+
+    .stat .num {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      background: linear-gradient(135deg, #e9d5ff, #f9a8d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+      position: relative;
     }
 
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(168, 85, 247, 0.5);
+    .stat .label {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      position: relative;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    section { margin-bottom: 60px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 10px;
     }
 
-    .animate-in {
-      animation: fadeInUp 0.5s ease forwards;
+    h2 {
+      font-size: 26px;
+      font-weight: 750;
+      letter-spacing: -0.6px;
+      margin-bottom: 22px;
     }
 
-    .copy-btn {
+    p {
+      color: var(--text-secondary);
+      font-size: 15.5px;
+      margin-bottom: 15px;
+      line-height: 1.75;
+    }
+
+    p strong { color: var(--text); font-weight: 600; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .skill-box h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.18s;
+      user-select: none;
+    }
+
+    .tag:hover,
+    .tag.active {
+      border-color: var(--purple);
+      background: rgba(168,85,247,0.12);
+      color: #e9d5ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(168,85,247,0.15);
+    }
+
+    .skill-info {
+      margin-top: 14px;
+      padding: 13px 15px;
+      background: rgba(168,85,247,0.08);
+      border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      display: none;
+      line-height: 1.5;
+    }
+
+    .skill-info.show {
+      display: block;
+      animation: fadeUp 0.25s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 28px;
+      margin-bottom: 14px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--purple), var(--pink));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .project:hover {
+      border-color: rgba(168,85,247,0.4);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .project:hover::before { opacity: 1; }
+
+    .project .num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .project h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .project p { font-size: 14.5px; margin-bottom: 16px; }
+    .project .tech { font-size: 12.5px; color: var(--text-muted); font-weight: 500; }
+
+    .exp {
+      position: relative;
+      padding-left: 24px;
+      border-left: 2px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .exp:last-child { margin-bottom: 0; }
+
+    .exp::before {
+      content: '';
+      position: absolute;
+      left: -7px; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      box-shadow: 0 0 12px rgba(168,85,247,0.5);
+    }
+
+    .exp .date {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 6px;
+    }
+
+    .exp h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .exp .sub { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+    .exp p { font-size: 14.5px; margin-bottom: 0; }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.08));
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .contact-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
+
+    .contact-value {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(168,85,247,0.35);
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #e9d5ff;
+      cursor: pointer;
       transition: all 0.2s;
+      user-select: none;
     }
 
-    .copy-btn:active {
-      transform: scale(0.96);
+    .contact-value:hover {
+      background: rgba(168,85,247,0.15);
+      border-color: rgba(168,85,247,0.55);
+      transform: scale(1.02);
+    }
+
+    .contact-value .copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer span {
+      background: linear-gradient(135deg, #c084fc, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .project { padding: 22px; }
     }
   </style>
 </head>
-<body class="text-gray-100 font-sans antialiased min-h-screen">
+<body>
+  <div class="container">
 
-  <div class="max-w-3xl mx-auto px-5 py-10 pb-24">
-
-    <!-- Header -->
-    <header class="flex items-center justify-between mb-14 flex-wrap gap-4">
-      <div class="text-base font-bold gradient-logo tracking-wide">k1evz</div>
-      <div class="flex gap-2.5">
-        <a href="mailto:k1evz@proton.me" 
-           class="w-10 h-10 rounded-xl bg-purple/10 border border-purple/30 flex items-center justify-center text-purple-200 hover:bg-purple/20 hover:border-purple/50 transition-all hover:-translate-y-0.5"
-           title="Email">
+    <div class="header">
+      <div class="logo">k1evz</div>
+      <div class="header-buttons">
+        <a href="mailto:k1evz@proton.me" class="header-btn" title="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="4" width="20" height="16" rx="2"/>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
           </svg>
         </a>
-        <button onclick="copyDiscord()" 
-                class="w-10 h-10 rounded-xl bg-purple/10 border border-purple/30 flex items-center justify-center text-purple-200 hover:bg-purple/20 hover:border-purple/50 transition-all hover:-translate-y-0.5 cursor-pointer"
-                title="Discord">
+        <div class="header-btn" onclick="copyDiscord()" title="Discord">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
           </svg>
-        </button>
+        </div>
       </div>
-    </header>
+    </div>
 
-    <!-- Hero -->
-    <section class="mb-14">
-      <p class="text-sm text-gray-500 font-medium mb-1 tracking-wide">nome</p>
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight gradient-text mb-2">Darwin</h1>
-      <p class="text-sm text-gray-500 font-medium mb-1">Username — Kiev / dex</p>
-      <p class="text-lg text-gray-300 font-medium mb-1">Security Analyst • Software Engineer</p>
-      <p class="text-sm text-gray-500 mb-7">Brasil</p>
+    <div class="hero">
+      <div style="font-size: 13px; color: #8b7a9e; margin-bottom: 4px; font-weight: 500;">nome</div>
+      <h1>Darwin</h1>
+      <div style="font-size: 13px; color: #8b7a9e; margin-top: 6px; margin-bottom: 6px; font-weight: 500;">Username — Kiev / dex</div>
+      <div class="role">Security Analyst • Software Engineer</div>
+      <div class="location">Brasil</div>
 
-      <div class="flex flex-wrap gap-2">
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-purple/15 border border-purple/40 text-purple-200">Reverse Engineering</span>
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-pink/15 border border-pink/40 text-pink-200">Exploit Development</span>
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-500/15 border border-blue-400/40 text-blue-200">C / C++</span>
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/15 border border-cyan-400/40 text-cyan-200">Assembly x86/x64</span>
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-500/15 border border-green-400/40 text-green-200">Malware Analysis</span>
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-500/15 border border-orange-400/40 text-orange-200">Windows Internals</span>
-        <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-red-500/15 border border-red-400/40 text-red-200">ROP & Shellcode</span>
+      <div class="hero-badges">
+        <span class="h-badge purple">Reverse Engineering</span>
+        <span class="h-badge pink">Exploit Development</span>
+        <span class="h-badge blue">C / C++</span>
+        <span class="h-badge cyan">Assembly x86/x64</span>
+        <span class="h-badge green">Malware Analysis</span>
+        <span class="h-badge orange">Windows Internals</span>
+        <span class="h-badge red">ROP & Shellcode</span>
       </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">6</div><div class="label">Projetos pessoais</div></div>
+      <div class="stat"><div class="num">12</div><div class="label">Projetos</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Principais</div></div>
+      <div class="stat"><div class="num">8</div><div class="label">Ferramentas core</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Linguagens</div></div>
+      <div class="stat"><div class="num">∞</div><div class="label">Curiosity</div></div>
+    </div>
+
+    <section>
+      <div class="section-label">Sobre</div>
+      <h2>Quem sou eu</h2>
+      <p>Sou o Darwin, mas a galera me chama de <strong>kiev</strong> ou <strong>dex</strong>. Comecei a programar com 12 anos e desde então nunca parei.</p>
+      <p>Hoje trabalho como Security Analyst e atuo também como Software Engineer. Meu interesse real sempre foi entender como as coisas funcionam por baixo — memória, binários, execução.</p>
+      <p>Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.</p>
+      <p>No dia a dia uso principalmente C/C++, assembly e debuggers. Gosto de ir fundo em low-level e em como o sistema realmente se comporta.</p>
     </section>
 
-    <!-- Stats -->
-    <section class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-16">
-      <div class="stat-card bg-card border border-border rounded-2xl p-5 text-center relative overflow-hidden">
-        <div class="text-3xl font-extrabold bg-gradient-to-br from-purple-200 to-pink-300 bg-clip-text text-transparent mb-1">6</div>
-        <div class="text-xs text-gray-500 font-medium">Projetos pessoais</div>
-      </div>
-      <div class="stat-card bg-card border border-border rounded-2xl p-5 text-center">
-        <div class="text-3xl font-extrabold bg-gradient-to-br from-purple-200 to-pink-300 bg-clip-text text-transparent mb-1">12</div>
-        <div class="text-xs text-gray-500 font-medium">Projetos</div>
-      </div>
-      <div class="stat-card bg-card border border-border rounded-2xl p-5 text-center">
-        <div class="text-3xl font-extrabold bg-gradient-to-br from-purple-200 to-pink-300 bg-clip-text text-transparent mb-1">3</div>
-        <div class="text-xs text-gray-500 font-medium">Principais</div>
-      </div>
-      <div class="stat-card bg-card border border-border rounded-2xl p-5 text-center">
-        <div class="text-3xl font-extrabold bg-gradient-to-br from-purple-200 to-pink-300 bg-clip-text text-transparent mb-1">8</div>
-        <div class="text-xs text-gray-500 font-medium">Ferramentas core</div>
-      </div>
-      <div class="stat-card bg-card border border-border rounded-2xl p-5 text-center">
-        <div class="text-3xl font-extrabold bg-gradient-to-br from-purple-200 to-pink-300 bg-clip-text text-transparent mb-1">5</div>
-        <div class="text-xs text-gray-500 font-medium">Linguagens</div>
-      </div>
-      <div class="stat-card bg-card border border-border rounded-2xl p-5 text-center">
-        <div class="text-3xl font-extrabold bg-gradient-to-br from-purple-200 to-pink-300 bg-clip-text text-transparent mb-1">∞</div>
-        <div class="text-xs text-gray-500 font-medium">Curiosity</div>
-      </div>
-    </section>
+    <section>
+      <div class="section-label">Stack</div>
+      <h2>Tecnologias</h2>
 
-    <!-- Sobre -->
-    <section class="mb-16">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-purple mb-2">Sobre</p>
-      <h2 class="text-2xl font-bold tracking-tight mb-5">Quem sou eu</h2>
-      <div class="space-y-4 text-gray-300 text-[15.5px] leading-relaxed">
-        <p>Sou o <strong class="text-white font-semibold">Darwin</strong>, mas a galera me chama de <strong class="text-white font-semibold">kiev</strong> ou <strong class="text-white font-semibold">dex</strong>. Comecei a programar com 12 anos e desde então nunca parei.</p>
-        <p>Hoje trabalho como Security Analyst e atuo também como Software Engineer. Meu interesse real sempre foi entender como as coisas funcionam por baixo — memória, binários, execução.</p>
-        <p>Foquei pesado em <strong class="text-white font-semibold">Reverse Engineering</strong> e <strong class="text-white font-semibold">Exploit Development</strong>. Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.</p>
-        <p>No dia a dia uso principalmente C/C++, assembly e debuggers. Gosto de ir fundo em low-level e em como o sistema realmente se comporta.</p>
-      </div>
-    </section>
-
-    <!-- Stack / Skills -->
-    <section class="mb-16">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-purple mb-2">Stack</p>
-      <h2 class="text-2xl font-bold tracking-tight mb-8">Tecnologias</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-        <!-- Core -->
-        <div>
-          <h3 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-3.5">Core</h3>
-          <div class="flex flex-wrap gap-2" id="core-tags">
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="re">Reverse Engineering</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="exploit">Exploit Development</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="rop">ROP Chains</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="shellcode">Shellcode</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="malware">Malware Analysis</button>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Core</h3>
+          <div class="tags" id="core">
+            <span class="tag" data-info="Análise profunda de binários, descompilação e compreensão de fluxo de execução.">Reverse Engineering</span>
+            <span class="tag" data-info="Desenvolvimento de exploits e exploração de vulnerabilidades.">Exploit Development</span>
+            <span class="tag" data-info="Construção de cadeias ROP para bypass de proteções.">ROP Chains</span>
+            <span class="tag" data-info="Escrita e otimização de shellcode x86/x64.">Shellcode</span>
+            <span class="tag" data-info="Análise estática e dinâmica de malware.">Malware Analysis</span>
           </div>
-          <div class="detail-panel" id="core-detail"></div>
+          <div class="skill-info" id="core-info"></div>
         </div>
 
-        <!-- Linguagens -->
-        <div>
-          <h3 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-3.5">Linguagens</h3>
-          <div class="flex flex-wrap gap-2" id="langs-tags">
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="c">C</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="cpp">C++</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="asm">Assembly</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="python">Python</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="rust">Rust</button>
+        <div class="skill-box">
+          <h3>Linguagens</h3>
+          <div class="tags" id="langs">
+            <span class="tag" data-info="Low-level, manipulação de memória e sistemas.">C</span>
+            <span class="tag" data-info="Windows API, C2 e ferramentas de sistema.">C++</span>
+            <span class="tag" data-info="ROP, shellcode e reversing.">Assembly</span>
+            <span class="tag" data-info="Automação, tooling e análise.">Python</span>
+            <span class="tag" data-info="Programação de sistemas com segurança de memória.">Rust</span>
           </div>
-          <div class="detail-panel" id="langs-detail"></div>
+          <div class="skill-info" id="langs-info"></div>
         </div>
 
-        <!-- Ferramentas -->
-        <div>
-          <h3 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-3.5">Ferramentas</h3>
-          <div class="flex flex-wrap gap-2" id="tools-tags">
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="ida">IDA Pro</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="ghidra">Ghidra</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="x64dbg">x64dbg</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="gdb">GDB</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="windbg">WinDbg</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="binja">Binary Ninja</button>
+        <div class="skill-box">
+          <h3>Ferramentas</h3>
+          <div class="tags" id="tools">
+            <span class="tag" data-info="Descompilador principal.">IDA Pro</span>
+            <span class="tag" data-info="Descompilador open-source.">Ghidra</span>
+            <span class="tag" data-info="Debugger Windows x64.">x64dbg</span>
+            <span class="tag" data-info="Debugger Linux.">GDB</span>
+            <span class="tag" data-info="Debugger Microsoft.">WinDbg</span>
+            <span class="tag" data-info="Análise estática moderna.">Binary Ninja</span>
           </div>
-          <div class="detail-panel" id="tools-detail"></div>
+          <div class="skill-info" id="tools-info"></div>
         </div>
 
-        <!-- Infra -->
-        <div>
-          <h3 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-3.5">Infra & Outros</h3>
-          <div class="flex flex-wrap gap-2" id="infra-tags">
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="c2">C2 Frameworks</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="linux">Linux Internals</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="windows">Windows Internals</button>
-            <button class="skill-tag px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-gray-300 cursor-pointer"
-                    data-id="memory">Memory Forensics</button>
+        <div class="skill-box">
+          <h3>Infra & Outros</h3>
+          <div class="tags" id="infra">
+            <span class="tag" data-info="Infraestrutura de Command & Control.">C2 Frameworks</span>
+            <span class="tag" data-info="Internals do Linux.">Linux Internals</span>
+            <span class="tag" data-info="Internals do Windows.">Windows Internals</span>
+            <span class="tag" data-info="Análise de memória e forense.">Memory Forensics</span>
           </div>
-          <div class="detail-panel" id="infra-detail"></div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Projetos -->
-    <section class="mb-16">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-purple mb-2">Projetos</p>
-      <h2 class="text-2xl font-bold tracking-tight mb-6">Trabalhos selecionados</h2>
-
-      <div class="space-y-3.5">
-        <article class="project-card relative bg-card border border-border rounded-2xl p-6 md:p-7 overflow-hidden">
-          <div class="text-xs font-bold text-purple tracking-wide mb-2">01</div>
-          <h3 class="text-lg font-bold mb-2.5">Custom C2</h3>
-          <p class="text-sm text-gray-300 leading-relaxed mb-4">Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
-          <p class="text-xs text-gray-500 font-medium">C++ · Windows API · Encryption · Network</p>
-        </article>
-
-        <article class="project-card relative bg-card border border-border rounded-2xl p-6 md:p-7 overflow-hidden">
-          <div class="text-xs font-bold text-purple tracking-wide mb-2">02</div>
-          <h3 class="text-lg font-bold mb-2.5">ROP Lab</h3>
-          <p class="text-sm text-gray-300 leading-relaxed mb-4">Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
-          <p class="text-xs text-gray-500 font-medium">C · Assembly · GDB · pwntools</p>
-        </article>
-
-        <article class="project-card relative bg-card border border-border rounded-2xl p-6 md:p-7 overflow-hidden">
-          <div class="text-xs font-bold text-purple tracking-wide mb-2">03</div>
-          <h3 class="text-lg font-bold mb-2.5">Memory Scanner</h3>
-          <p class="text-sm text-gray-300 leading-relaxed mb-4">Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
-          <p class="text-xs text-gray-500 font-medium">C++ · Windows Internals · Memory</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Experiência -->
-    <section class="mb-16">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-purple mb-2">Trajetória</p>
-      <h2 class="text-2xl font-bold tracking-tight mb-6">Experiência</h2>
-
-      <div class="relative border-l-2 border-border pl-6 space-y-8">
-        <div class="relative">
-          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-gradient-to-br from-purple to-pink shadow-[0_0_12px_rgba(168,85,247,0.5)]"></div>
-          <p class="text-sm font-semibold text-purple mb-1">2024 — Presente</p>
-          <h3 class="text-base font-bold mb-1">Security Analyst</h3>
-          <p class="text-sm text-gray-500 mb-2">Atual</p>
-          <p class="text-sm text-gray-300">Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</p>
-        </div>
-
-        <div class="relative">
-          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-gradient-to-br from-purple to-pink shadow-[0_0_12px_rgba(168,85,247,0.5)]"></div>
-          <p class="text-sm font-semibold text-purple mb-1">2022 — 2024</p>
-          <h3 class="text-base font-bold mb-1">Software Engineer + Reverse Engineering</h3>
-          <p class="text-sm text-gray-500 mb-2">Desenvolvimento low-level</p>
-          <p class="text-sm text-gray-300">Desenvolvimento low-level e estudo profundo de sistemas operacionais, binários e técnicas de exploração.</p>
+          <div class="skill-info" id="infra-info"></div>
         </div>
       </div>
     </section>
 
-    <!-- Contato -->
-    <section class="mb-10">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-purple mb-2">Contato</p>
-      <h2 class="text-2xl font-bold tracking-tight mb-6">Vamos conversar</h2>
+    <section>
+      <div class="section-label">Projetos</div>
+      <h2>Trabalhos selecionados</h2>
 
-      <div class="bg-gradient-to-br from-purple/15 to-pink/
+      <div class="project">
+        <div class="num">01</div>
+        <h3>Custom C2</h3>
+        <p>Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
+        <div class="tech">C++ · Windows API · Encryption · Network</div>
+      </div>
+
+      <div class="project">
+        <div class="num">02</div>
+        <h3>ROP Lab</h3>
+        <p>Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
+        <div class="tech">C · Assembly · GDB · pwntools</div>
+      </div>
+
+      <div class="project">
+        <div class="num">03</div>
+        <h3>Memory Scanner</h3>
+        <p>Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
+        <div class="tech">C++ · Windows Internals · Memory</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Trajetória</div>
+      <h2>Experiência</h2>
+
+      <div class="exp">
+        <div class="date">2024 — Presente</div>
+        <h3>Security Analyst</h3>
+        <div class="sub">Atual</div>
+        <p>Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</p>
+      </div>
+
+      <div class="exp">
+        <div class="date">2022 — 2024</div>
+        <h3>Software Engineer + Reverse Engineering</h3>
+        <div class="sub">Desenvolvimento low-level</div>
+        <p>Desenvolvimento low-level e estudo profundo de sistemas operacionais, binários e técnicas de exploração.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Contato</div>
+      <h2>Vamos conversar</h2>
+
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p>Me manda um email direto</p>
+        <div class="contact-value" onclick="copyEmail()">
+          k1evz@proton.me
+          <span class="copy">clique para copiar</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Feito por <span>Darwin / k1evz</span> — 2026
+    </footer>
+  </div>
+
+  <script>
+    // Tags interativos
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const box = tag.closest('.skill-box');
+        const info = box.querySelector('.skill-info');
+
+        // remove active dos irmãos
+        box.querySelectorAll('.tag').forEach(t =
