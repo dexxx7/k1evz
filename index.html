@@ -3,55 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Kievz — Creative Digital Studio. Design, desenvolvimento e inovação.">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Darwin (kiev/dex) — Security Analyst & Software Engineer. Portfólio pessoal de Reverse Engineering e Exploit Development.">
+  <meta name="theme-color" content="#0a0c0f">
   <meta name="color-scheme" content="dark light">
-  <title>Kievz | Estúdio Criativo Digital</title>
+  <title>Darwin (kiev/dex) | Security Analyst & Software Engineer</title>
   <style>
     /* ==============================
-       MÓDULO 2: DESIGN SYSTEM E PALETA DE CORES INTELIGENTE
+       MÓDULO 2: DESIGN SYSTEM E PALETA DE CORES (SÓBRIA E TÉCNICA)
        ============================== */
     :root {
-      /* Cores primárias */
+      /* Cores primárias (roxo/azul escuro) */
       --color-primary: #6c5ce7;
       --color-primary-light: #a29bfe;
       --color-primary-dark: #4834d4;
 
-      /* Cores secundárias */
-      --color-secondary: #00cec9;
-      --color-secondary-light: #81ecec;
-      --color-secondary-dark: #00b894;
+      /* Acento (verde terminal) */
+      --color-accent: #00ff9d;
+      --color-accent-glow: #00cc7e;
 
-      /* Cores de acentuação */
-      --color-accent: #fd79a8;
-      --color-accent-glow: #e84393;
+      /* Cores secundárias (cinza azulado) */
+      --color-secondary: #5b7f95;
+      --color-secondary-light: #7a9bb5;
+      --color-secondary-dark: #3a5068;
 
-      /* Cores neutras - Modo Claro (defaults, sobrescritas no dark) */
-      --color-bg: #ffffff;
-      --color-bg-alt: #f8f9fa;
-      --color-surface: #ffffff;
-      --color-surface-hover: #f1f3f5;
-      --color-text: #1a1a2e;
-      --color-text-secondary: #4a4a6a;
-      --color-text-muted: #7f8c8d;
-      --color-border: #e0e0e0;
-      --color-border-light: #f0f0f0;
-      --color-shadow: rgba(0, 0, 0, 0.06);
-      --color-shadow-strong: rgba(0, 0, 0, 0.1);
+      /* Cores neutras - Modo Escuro (padrão) */
+      --color-bg: #0a0c0f;
+      --color-bg-alt: #11151a;
+      --color-surface: #161b22;
+      --color-surface-hover: #1c2330;
+      --color-text: #e0e4ea;
+      --color-text-secondary: #a0aab4;
+      --color-text-muted: #6b7682;
+      --color-border: #2a303c;
+      --color-border-light: #1e2430;
+      --color-shadow: rgba(0, 0, 0, 0.4);
+      --color-shadow-strong: rgba(0, 0, 0, 0.7);
 
       /* Estados */
-      --color-success: #27ae60;
-      --color-error: #e74c3c;
-      --color-warning: #f39c12;
-      --color-info: #3498db;
+      --color-success: #00cc7e;
+      --color-error: #ff4757;
+      --color-warning: #ffa502;
+      --color-info: #3742fa;
 
-      /* Glassmorphism */
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.25);
-      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --glass-blur: blur(12px);
+      /* Terminal verde */
+      --terminal-green: #00ff9d;
+      --terminal-dark: #0c0f12;
 
-      /* Tipografia fluida (MÓDULO 3) */
+      /* Tipografia fluida (MÓDULO 3) - agora com fonte monoespaçada para títulos técnicos */
+      --font-mono: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
       --font-scale-1: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --font-scale-2: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
       --font-scale-3: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
@@ -60,14 +61,12 @@
       --font-scale-6: clamp(2.25rem, 1.8rem + 1.8vw, 3.5rem);
       --font-scale-7: clamp(3rem, 2.2rem + 3vw, 5rem);
 
-      /* Pesos */
       --weight-light: 300;
       --weight-regular: 400;
       --weight-medium: 500;
       --weight-semibold: 600;
       --weight-bold: 700;
 
-      /* Espaçamentos */
       --space-xs: 0.25rem;
       --space-sm: 0.5rem;
       --space-md: 1rem;
@@ -77,73 +76,55 @@
       --space-3xl: 5rem;
       --space-section: clamp(3rem, 6vw, 8rem);
 
-      /* Bordas e curvas */
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
       --radius-full: 9999px;
 
-      /* Transições */
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-      --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
       --duration-fast: 150ms;
       --duration-normal: 300ms;
       --duration-slow: 500ms;
-      --duration-very-slow: 800ms;
 
-      /* Anel de foco para acessibilidade */
-      --focus-ring: 0 0 0 3px rgba(108, 92, 231, 0.5);
+      --focus-ring: 0 0 0 3px rgba(0, 255, 157, 0.5);
       --focus-ring-offset: 2px;
     }
 
-    /* Modo escuro (data-theme="dark") */
-    [data-theme="dark"] {
-      --color-bg: #0a0a0a;
-      --color-bg-alt: #111111;
-      --color-surface: #1a1a2e;
-      --color-surface-hover: #25253e;
-      --color-text: #ede7f6;
-      --color-text-secondary: #b0b0d0;
-      --color-text-muted: #7f8c8d;
-      --color-border: #2d2d44;
-      --color-border-light: #3a3a5c;
-      --color-shadow: rgba(0, 0, 0, 0.3);
-      --color-shadow-strong: rgba(0, 0, 0, 0.5);
-      --glass-bg: rgba(20, 20, 40, 0.4);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      --glass-blur: blur(16px);
+    /* Modo claro (respeita preferência, mas mantém tom sóbrio) */
+    [data-theme="light"] {
+      --color-bg: #f5f7fa;
+      --color-bg-alt: #ebeff3;
+      --color-surface: #ffffff;
+      --color-surface-hover: #f0f3f6;
+      --color-text: #1a1e24;
+      --color-text-secondary: #4a5568;
+      --color-text-muted: #718096;
+      --color-border: #cbd5e0;
+      --color-border-light: #e2e8f0;
+      --color-shadow: rgba(0, 0, 0, 0.05);
+      --color-shadow-strong: rgba(0, 0, 0, 0.1);
     }
 
-    /* Se o sistema prefere escuro e não há data-theme definido */
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --color-bg: #0a0a0a;
-        --color-bg-alt: #111111;
-        --color-surface: #1a1a2e;
-        --color-surface-hover: #25253e;
-        --color-text: #ede7f6;
-        --color-text-secondary: #b0b0d0;
-        --color-text-muted: #7f8c8d;
-        --color-border: #2d2d44;
-        --color-border-light: #3a3a5c;
-        --color-shadow: rgba(0, 0, 0, 0.3);
-        --color-shadow-strong: rgba(0, 0, 0, 0.5);
-        --glass-bg: rgba(20, 20, 40, 0.4);
-        --glass-border: rgba(255, 255, 255, 0.08);
-        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        --glass-blur: blur(16px);
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --color-bg: #f5f7fa;
+        --color-bg-alt: #ebeff3;
+        --color-surface: #ffffff;
+        --color-surface-hover: #f0f3f6;
+        --color-text: #1a1e24;
+        --color-text-secondary: #4a5568;
+        --color-text-muted: #718096;
+        --color-border: #cbd5e0;
+        --color-border-light: #e2e8f0;
+        --color-shadow: rgba(0, 0, 0, 0.05);
+        --color-shadow-strong: rgba(0, 0, 0, 0.1);
       }
     }
 
-    /* Reset e estilos base */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Reset */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
@@ -152,7 +133,7 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
       background-color: var(--color-bg);
       color: var(--color-text);
       line-height: 1.6;
@@ -162,7 +143,6 @@
                   color var(--duration-normal) var(--ease-out-expo);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     /* ==============================
@@ -170,53 +150,46 @@
        ============================== */
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 var(--space-lg);
     }
 
-    @media (min-width: 768px) {
-      .container {
-        padding: 0 var(--space-xl);
-      }
-    }
-
-    /* Header com navegação */
+    /* Header fixo com efeito glass e tema escuro predominante */
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      background: var(--glass-bg);
-      border-bottom: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      transition: background var(--duration-normal) var(--ease-out-expo);
+      background: rgba(10, 12, 15, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      transition: background var(--duration-normal);
     }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: clamp(56px, 8vw, 72px);
-      padding: 0 var(--space-lg);
-      max-width: 1200px;
+      height: clamp(56px, 8vw, 70px);
+      max-width: 1100px;
       margin: 0 auto;
-      width: 100%;
+      padding: 0 var(--space-lg);
     }
 
     .logo {
-      font-size: var(--font-scale-4);
+      font-family: var(--font-mono);
+      font-size: var(--font-scale-3);
       font-weight: var(--weight-bold);
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: var(--terminal-green);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--terminal-green), var(--color-primary-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: -0.5px;
-      text-decoration: none;
-      user-select: none;
     }
 
     .nav-list {
@@ -231,7 +204,7 @@
       color: var(--color-text-secondary);
       font-weight: var(--weight-medium);
       font-size: var(--font-scale-1);
-      transition: color var(--duration-fast) var(--ease-out-expo);
+      transition: color var(--duration-fast);
       position: relative;
       padding: var(--space-xs) 0;
     }
@@ -243,7 +216,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--color-primary);
+      background: var(--terminal-green);
       transition: width var(--duration-normal) var(--ease-out-expo);
     }
 
@@ -257,133 +230,110 @@
       width: 100%;
     }
 
-    /* Toggle de tema */
     .theme-toggle {
-      background: var(--color-surface);
+      background: none;
       border: 1px solid var(--color-border);
       border-radius: var(--radius-full);
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       color: var(--color-text);
-      font-size: var(--font-scale-3);
-      transition: all var(--duration-fast) var(--ease-out-expo);
-      position: relative;
+      font-size: 1.1rem;
+      transition: all var(--duration-fast);
+      margin-left: var(--space-sm);
     }
 
     .theme-toggle:hover {
       background: var(--color-surface-hover);
-      box-shadow: var(--color-shadow);
     }
 
     .theme-toggle:focus-visible {
-      outline: none;
       box-shadow: var(--focus-ring);
     }
 
-    .theme-toggle .icon-sun,
-    .theme-toggle .icon-moon {
-      position: absolute;
-      transition: opacity var(--duration-normal), transform var(--duration-normal) var(--ease-out-expo);
-    }
+    /* Alternância de ícones sol/lua */
+    .icon-sun, .icon-moon { position: absolute; transition: opacity var(--duration-normal), transform var(--duration-normal) var(--ease-out-expo); }
+    [data-theme="dark"] .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+    [data-theme="dark"] .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+    [data-theme="light"] .icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+    [data-theme="light"] .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
 
-    [data-theme="dark"] .icon-sun {
-      opacity: 1;
-      transform: rotate(0deg) scale(1);
-    }
-
-    [data-theme="dark"] .icon-moon {
-      opacity: 0;
-      transform: rotate(90deg) scale(0.5);
-    }
-
-    [data-theme="light"] .icon-sun {
-      opacity: 0;
-      transform: rotate(-90deg) scale(0.5);
-    }
-
-    [data-theme="light"] .icon-moon {
-      opacity: 1;
-      transform: rotate(0deg) scale(1);
-    }
-
-    /* Menu mobile (simplificado, mas presente) */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--color-text);
-      font-size: var(--font-scale-4);
-      cursor: pointer;
-      padding: var(--space-sm);
-    }
+    .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-text); font-size: 1.5rem; cursor: pointer; }
 
     @media (max-width: 767px) {
-      .nav-list {
-        display: none;
-      }
-      .mobile-menu-btn {
-        display: block;
-      }
+      .nav-list { display: none; }
+      .mobile-menu-btn { display: block; }
     }
+
+    main { margin-top: clamp(56px, 8vw, 70px); }
+
+    section { padding: var(--space-section) 0; }
 
     /* ==============================
-       MÓDULO 1: MAIN E SEÇÕES
+       HERO (APRESENTAÇÃO PESSOAL)
        ============================== */
-    main {
-      margin-top: clamp(56px, 8vw, 72px);
-    }
-
-    section {
-      padding: var(--space-section) 0;
-      position: relative;
-    }
-
-    /* Hero Section */
     .hero {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      min-height: 90vh;
-      justify-content: center;
-      background: radial-gradient(circle at 30% 40%, rgba(108, 92, 231, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 60%, rgba(0, 206, 201, 0.06) 0%, transparent 50%);
+      min-height: 85vh;
+      background: radial-gradient(circle at 20% 30%, rgba(108, 92, 231, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(0, 255, 157, 0.04) 0%, transparent 50%);
     }
 
-    .hero-title {
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero-greeting {
+      font-family: var(--font-mono);
+      font-size: var(--font-scale-2);
+      color: var(--terminal-green);
+      margin-bottom: var(--space-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    .hero-name {
       font-size: var(--font-scale-7);
       font-weight: var(--weight-bold);
       line-height: 1.1;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary-light) 80%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      max-width: 800px;
-      margin-bottom: var(--space-lg);
     }
 
-    .hero-subtitle {
+    .hero-role {
+      font-family: var(--font-mono);
       font-size: var(--font-scale-4);
       color: var(--color-text-secondary);
-      max-width: 600px;
+      margin-bottom: var(--space-xl);
+      font-weight: var(--weight-medium);
+      border-left: 3px solid var(--terminal-green);
+      padding-left: var(--space-md);
+    }
+
+    .hero-description {
+      font-size: var(--font-scale-3);
+      color: var(--color-text-secondary);
+      max-width: 650px;
       margin-bottom: var(--space-2xl);
-      font-weight: var(--weight-regular);
+      line-height: 1.7;
     }
 
     /* ==============================
-       MÓDULO 4: BOTÕES E MICRO-INTERAÇÕES
+       MÓDULO 4: BOTÕES COM TODOS OS ESTADOS
        ============================== */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: var(--space-sm);
-      padding: 0.8em 2em;
+      padding: 0.7em 1.8em;
       border-radius: var(--radius-full);
       font-weight: var(--weight-semibold);
       font-size: var(--font-scale-2);
@@ -399,86 +349,58 @@
       user-select: none;
     }
 
-    /* Botão Primário */
     .btn-primary {
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
-      border: 1px solid transparent;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--color-secondary-dark), var(--color-primary));
-      opacity: 0;
-      transition: opacity var(--duration-normal) var(--ease-out-expo);
-      z-index: -1;
-      border-radius: var(--radius-full);
-    }
-
-    .btn-primary:hover::before {
-      opacity: 1;
+      background: var(--terminal-green);
+      color: #0a0c0f;
+      box-shadow: 0 4px 15px rgba(0, 255, 157, 0.3);
+      font-family: var(--font-mono);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.5px;
     }
 
     .btn-primary:hover {
+      background: #00e68a;
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(108, 92, 231, 0.5);
+      box-shadow: 0 10px 25px rgba(0, 255, 157, 0.4);
     }
 
     .btn-primary:active {
       transform: translateY(1px) scale(0.98);
-      box-shadow: 0 2px 10px rgba(108, 92, 231, 0.3);
-      transition: all var(--duration-fast) var(--ease-out-expo);
+      box-shadow: 0 2px 8px rgba(0, 255, 157, 0.3);
     }
 
     .btn-primary:focus-visible {
-      outline: none;
-      box-shadow: var(--focus-ring), 0 4px 15px rgba(108, 92, 231, 0.4);
-      outline-offset: var(--focus-ring-offset);
+      box-shadow: var(--focus-ring), 0 4px 15px rgba(0, 255, 157, 0.3);
     }
 
     .btn-primary:disabled {
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
-      filter: grayscale(30%);
+      filter: grayscale(50%);
     }
 
-    /* Botão Glass */
-    .btn-glass {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
-      color: var(--color-text);
-      box-shadow: var(--glass-shadow);
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--terminal-green);
+      color: var(--terminal-green);
+      font-family: var(--font-mono);
+      box-shadow: none;
     }
 
-    .btn-glass:hover {
-      background: var(--color-surface-hover);
-      border-color: var(--color-primary-light);
-      box-shadow: 0 12px 32px var(--color-shadow-strong);
+    .btn-outline:hover {
+      background: rgba(0, 255, 157, 0.05);
+      border-color: #00e68a;
+      color: #00e68a;
       transform: translateY(-2px);
     }
 
-    .btn-glass:active {
-      transform: translateY(1px) scale(0.98);
+    .btn-outline:focus-visible {
+      box-shadow: var(--focus-ring);
     }
 
-    .btn-glass:focus-visible {
-      box-shadow: var(--focus-ring), var(--glass-shadow);
-    }
-
-    .btn-glass:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* Spinner de carregamento */
+    /* Loading spinner */
     .btn-loading {
       position: relative;
       color: transparent !important;
@@ -490,44 +412,106 @@
       position: absolute;
       width: 18px;
       height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: #ffffff;
+      border: 2px solid rgba(10, 12, 15, 0.3);
+      border-top-color: #0a0c0f;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ==============================
+       SEÇÃO SKILLS (TAGS TÉCNICAS)
+       ============================== */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
     }
 
-    /* Efeito magnético (apenas no botão hero principal) */
-    .btn-magnetic {
-      transition: transform var(--duration-fast) var(--ease-out-expo);
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: var(--font-scale-1);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 0.4em 1em;
+      border-radius: var(--radius-full);
+      color: var(--color-text-secondary);
+      transition: all var(--duration-fast);
+      white-space: nowrap;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--terminal-green);
+      color: var(--terminal-green);
+      background: rgba(0, 255, 157, 0.03);
+      transform: translateY(-1px);
     }
 
     /* ==============================
-       MÓDULO 5: ANIMAÇÕES E SCROLL
+       SEÇÃO DE PROJETOS (CARDS SÓBRIOS)
        ============================== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
     }
 
+    .project-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all var(--duration-normal) var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terminal-green), var(--color-primary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px var(--color-shadow-strong);
+      border-color: var(--color-border-light);
+    }
+
+    .project-title {
+      font-family: var(--font-mono);
+      font-size: var(--font-scale-4);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--space-sm);
+      color: var(--color-text);
+    }
+
+    .project-desc {
+      color: var(--color-text-secondary);
+      font-size: var(--font-scale-2);
+    }
+
+    /* ==============================
+       MÓDULO 5: ANIMAÇÕES DE ENTRADA E SCROLL
+       ============================== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     @keyframes fadeInScale {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .reveal {
@@ -535,155 +519,27 @@
       transition: opacity var(--duration-slow) var(--ease-out-expo),
                   transform var(--duration-slow) var(--ease-out-expo);
     }
-
-    .reveal.fade-up {
-      transform: translateY(40px);
-    }
-
-    .reveal.fade-scale {
-      transform: scale(0.9);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+    .reveal.fade-up { transform: translateY(35px); }
+    .reveal.fade-scale { transform: scale(0.92); }
+    .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
 
     /* ==============================
-       MÓDULO 1: GRID E FLEXBOX LAYOUTS
-       ============================== */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-2xl);
-    }
-
-    .feature-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-2xl);
-      transition: all var(--duration-normal) var(--ease-out-expo);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform var(--duration-slow) var(--ease-out-expo);
-    }
-
-    .feature-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px var(--color-shadow-strong);
-      border-color: var(--color-primary-light);
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: var(--space-md);
-      display: inline-block;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .feature-title {
-      font-size: var(--font-scale-4);
-      font-weight: var(--weight-semibold);
-      margin-bottom: var(--space-sm);
-    }
-
-    .feature-desc {
-      color: var(--color-text-secondary);
-      font-size: var(--font-scale-2);
-    }
-
-    /* Grade de projetos (exemplo) */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-lg);
-      margin-top: var(--space-2xl);
-    }
-
-    .project-card {
-      border-radius: var(--radius-lg);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      overflow: hidden;
-      transition: all var(--duration-normal) var(--ease-out-expo);
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 40px var(--color-shadow-strong);
-    }
-
-    .project-image {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--font-scale-7);
-      color: rgba(255,255,255,0.3);
-    }
-
-    .project-info {
-      padding: var(--space-lg);
-    }
-
-    /* Container Queries (suporte moderno) */
-    @container (min-width: 400px) {
-      .feature-card {
-        padding: var(--space-2xl);
-      }
-    }
-
-    /* ==============================
-       MÓDULO 6: ACESSIBILIDADE E PERFORMANCE
+       MÓDULO 6: ACESSIBILIDADE
        ============================== */
     .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      border: 0;
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
     }
 
-    /* Respeitar prefers-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
     }
 
-    /* Footer */
     .site-footer {
       background: var(--color-bg-alt);
       border-top: 1px solid var(--color-border);
@@ -691,6 +547,12 @@
       text-align: center;
       color: var(--color-text-muted);
       font-size: var(--font-scale-1);
+      font-family: var(--font-mono);
+    }
+
+    .footer-terminal {
+      color: var(--terminal-green);
+      opacity: 0.7;
     }
 
     /* Utilitários */
@@ -700,27 +562,23 @@
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- ==============================
-       MÓDULO 1: HEADER SEMÂNTICO
-       ============================== -->
+  <!-- Header semântico -->
   <header class="site-header" role="banner">
     <div class="header-inner">
-      <a href="#" class="logo" aria-label="Kievz - Página inicial">Kievz</a>
+      <a href="#" class="logo" aria-label="Darwin - Página inicial">k1evz:~$</a>
       <nav aria-label="Navegação principal">
         <ul class="nav-list" role="list">
-          <li><a href="#inicio" class="nav-link" aria-current="page">Início</a></li>
-          <li><a href="#recursos" class="nav-link">Recursos</a></li>
-          <li><a href="#projetos" class="nav-link">Projetos</a></li>
-          <li><a href="#contato" class="nav-link">Contato</a></li>
+          <li><a href="#sobre" class="nav-link">/sobre</a></li>
+          <li><a href="#skills" class="nav-link">/skills</a></li>
+          <li><a href="#projetos" class="nav-link">/projetos</a></li>
+          <li><a href="#contato" class="nav-link">/contato</a></li>
         </ul>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
-        ☰
-      </button>
-      <button class="theme-toggle" aria-label="Alternar modo escuro/claro" id="themeToggle">
+      <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
         <span class="icon-sun" aria-hidden="true">☀️</span>
         <span class="icon-moon" aria-hidden="true">🌙</span>
       </button>
@@ -728,230 +586,30 @@
   </header>
 
   <main id="main-content">
-    <!-- Hero -->
-    <section id="inicio" class="hero" aria-labelledby="hero-heading">
+    <!-- Hero / Apresentação -->
+    <section id="sobre" class="hero" aria-labelledby="hero-heading">
       <div class="container">
-        <h1 id="hero-heading" class="hero-title reveal fade-up">Criamos o futuro digital</h1>
-        <p class="hero-subtitle reveal fade-up" style="transition-delay: 0.1s;">
-          Design, código e estratégia unidos para elevar marcas ao próximo nível.
-        </p>
-        <div class="reveal fade-up" style="transition-delay: 0.2s;">
-          <button class="btn btn-primary btn-magnetic" id="ctaButton" aria-label="Iniciar projeto">
-            Iniciar Projeto ✦
-          </button>
-          <button class="btn btn-glass" style="margin-left: var(--space-md);" id="demoLoadingBtn" aria-label="Ver demonstração">
-            Ver Demonstração
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Recursos -->
-    <section id="recursos" aria-labelledby="recursos-heading">
-      <div class="container">
-        <h2 id="recursos-heading" class="text-center reveal fade-up" style="font-size: var(--font-scale-6); font-weight: var(--weight-bold);">
-          Recursos poderosos
-        </h2>
-        <p class="text-center reveal fade-up" style="color: var(--color-text-secondary); max-width: 600px; margin: var(--space-md) auto 0; font-size: var(--font-scale-3);">
-          Tudo que você precisa para construir interfaces modernas e acessíveis.
-        </p>
-        <div class="features-grid">
-          <article class="feature-card reveal fade-up" style="transition-delay: 0.1s;" aria-labelledby="feature1">
-            <div class="feature-icon" aria-hidden="true">⚡</div>
-            <h3 id="feature1" class="feature-title">Performance Extrema</h3>
-            <p class="feature-desc">Animações aceleradas por GPU, carregamento instantâneo e zero desperdício de recursos.</p>
-          </article>
-          <article class="feature-card reveal fade-up" style="transition-delay: 0.2s;" aria-labelledby="feature2">
-            <div class="feature-icon" aria-hidden="true">🎨</div>
-            <h3 id="feature2" class="feature-title">Design System Robusto</h3>
-            <p class="feature-desc">Cores, tipografia e componentes regidos por tokens customizáveis e modo escuro nativo.</p>
-          </article>
-          <article class="feature-card reveal fade-up" style="transition-delay: 0.3s;" aria-labelledby="feature3">
-            <div class="feature-icon" aria-hidden="true">♿</div>
-            <h3 id="feature3" class="feature-title">Acessibilidade Total</h3>
-            <p class="feature-desc">Conformidade WCAG AAA, navegação por teclado e leitores de tela sem esforço.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projetos -->
-    <section id="projetos" aria-labelledby="projetos-heading">
-      <div class="container">
-        <h2 id="projetos-heading" class="text-center reveal fade-up" style="font-size: var(--font-scale-6); font-weight: var(--weight-bold);">
-          Projetos recentes
-        </h2>
-        <div class="projects-grid">
-          <div class="project-card reveal fade-scale" style="transition-delay: 0.1s;">
-            <div class="project-image" aria-hidden="true">✦</div>
-            <div class="project-info">
-              <h3 style="font-size: var(--font-scale-4);">Nebula Dashboard</h3>
-              <p style="color: var(--color-text-secondary);">Painel analítico com visualizações 3D.</p>
-            </div>
+        <div class="hero-content">
+          <p class="hero-greeting reveal fade-up">~/darwin $ whoami</p>
+          <h1 id="hero-heading" class="hero-name reveal fade-up" style="transition-delay: 0.1s;">Darwin</h1>
+          <p class="hero-role reveal fade-up" style="transition-delay: 0.15s;">Security Analyst • Software Engineer</p>
+          <div class="hero-description reveal fade-up" style="transition-delay: 0.2s;">
+            <p>Olá, galera. Boa noite. Sou o Darwin, podem me chamar de <strong>kiev</strong> ou <strong>dex</strong>.</p>
+            <p>Trabalho como Security Analyst e também atuo como Software Engineer. Estudo programação desde os 12 anos. Meu foco principal é <strong>Reverse Engineering e Exploit Development</strong>. Tenho experiência com ROP, shellcode e desenvolvimento de infraestrutura de C2.</p>
+            <p>Uso bastante C/C++, tenho boa base em memória e assembly, e trabalho constantemente com debuggers e ferramentas de engenharia reversa. Sempre buscando evoluir.</p>
           </div>
-          <div class="project-card reveal fade-scale" style="transition-delay: 0.2s;">
-            <div class="project-image" aria-hidden="true">◆</div>
-            <div class="project-info">
-              <h3 style="font-size: var(--font-scale-4);">Eco Store</h3>
-              <p style="color: var(--color-text-secondary);">E-commerce sustentável com microinterações.</p>
-            </div>
-          </div>
-          <div class="project-card reveal fade-scale" style="transition-delay: 0.3s;">
-            <div class="project-image" aria-hidden="true">⧫</div>
-            <div class="project-info">
-              <h3 style="font-size: var(--font-scale-4);">Aether App</h3>
-              <p style="color: var(--color-text-secondary);">Aplicativo de meditação com UI fluida.</p>
-            </div>
+          <div class="reveal fade-up" style="transition-delay: 0.25s; display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#projetos" class="btn btn-primary">./projetos</a>
+            <a href="#contato" class="btn btn-outline">./contato</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contato -->
-    <section id="contato" aria-labelledby="contato-heading">
-      <div class="container text-center">
-        <h2 id="contato-heading" class="reveal fade-up" style="font-size: var(--font-scale-6); font-weight: var(--weight-bold);">
-          Vamos conversar?
-        </h2>
-        <p class="reveal fade-up" style="color: var(--color-text-secondary); margin: var(--space-md) auto; max-width: 500px; font-size: var(--font-scale-3);">
-          Estamos prontos para transformar sua ideia em realidade.
-        </p>
-        <div class="reveal fade-up" style="transition-delay: 0.1s;">
-          <!-- Botão desabilitado de exemplo -->
-          <button class="btn btn-primary" disabled aria-label="Botão desabilitado de exemplo">Indisponível no momento</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <p>© 2026 Kievz Studio. Construído com precisão e acessibilidade.</p>
-  </footer>
-
-  <script>
-    (function() {
-      'use strict';
-
-      // ==============================
-      // MÓDULO 2: TOGGLE MODO ESCURO/CLARO
-      // ==============================
-      const html = document.documentElement;
-      const themeToggle = document.getElementById('themeToggle');
-
-      // Inicializa tema: verifica localStorage, senão usa preferência do sistema
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme) {
-        html.setAttribute('data-theme', storedTheme);
-      } else {
-        // Deixar o CSS decidir via prefers-color-scheme
-        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-          html.setAttribute('data-theme', 'light');
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          html.setAttribute('data-theme', 'dark');
-        } else {
-          html.setAttribute('data-theme', 'dark'); // fallback
-        }
-      }
-
-      themeToggle.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        // Anuncia mudança para leitores de tela
-        themeToggle.setAttribute('aria-label', `Modo ${next === 'dark' ? 'escuro' : 'claro'} ativado`);
-      });
-
-      // ==============================
-      // MÓDULO 5: INTERSECTION OBSERVER PARA REVELAÇÕES
-      // ==============================
-      const revealElements = document.querySelectorAll('.reveal');
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -50px 0px',
-        threshold: 0.1
-      };
-
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Opcional: parar de observar após revelar
-            // revealObserver.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      revealElements.forEach(el => revealObserver.observe(el));
-
-      // ==============================
-      // MÓDULO 4: EFEITO MAGNÉTICO NO BOTÃO PRINCIPAL
-      // ==============================
-      const magneticBtn = document.querySelector('.btn-magnetic');
-      if (magneticBtn) {
-        magneticBtn.addEventListener('mousemove', (e) => {
-          const rect = magneticBtn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const strength = 0.3;
-          magneticBtn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-        });
-        magneticBtn.addEventListener('mouseleave', () => {
-          magneticBtn.style.transform = 'translate(0, 0)';
-        });
-        // Reset no foco para acessibilidade
-        magneticBtn.addEventListener('focus', () => {
-          magneticBtn.style.transform = 'translate(0, 0)';
-        });
-      }
-
-      // ==============================
-      // MÓDULO 4: DEMONSTRAÇÃO DE BOTÃO COM LOADING
-      // ==============================
-      const demoLoadingBtn = document.getElementById('demoLoadingBtn');
-      demoLoadingBtn.addEventListener('click', function() {
-        if (this.classList.contains('btn-loading')) return;
-        this.classList.add('btn-loading');
-        this.setAttribute('aria-busy', 'true');
-        // Simula carregamento de 2 segundos
-        setTimeout(() => {
-          this.classList.remove('btn-loading');
-          this.setAttribute('aria-busy', 'false');
-          alert('✨ Demonstração concluída! O botão agora está funcional novamente.');
-        }, 2000);
-      });
-
-      // ==============================
-      // MÓDULO 6: NAVEGAÇÃO POR TECLADO E FOCO VISÍVEL
-      // ==============================
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          // Fecharia menu mobile se implementado
-          document.activeElement?.blur();
-        }
-      });
-
-      // Garantir que links âncora funcionem suavemente (scroll-behavior já cuida)
-      // Apenas para evitar conflitos com botões que não são links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href').substring(1);
-          const target = document.getElementById(targetId);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Foco no título da seção para acessibilidade
-            const heading = target.querySelector('h1, h2, h3, h4');
-            if (heading) {
-              heading.setAttribute('tabindex', '-1');
-              heading.focus({ preventScroll: true });
-            }
-          }
-        });
-      });
-
-      console.log('🚀 Kievz.cc — Todos os módulos carregados com sucesso. Pronto para inspeção Awwwards.');
-    })();
-  </script>
-</body>
-</html>
+    <!-- Skills -->
+    <section id="skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="reveal fade-up" style="font-family: var(--font-mono); font-size: var(--font-scale-5); color: var(--terminal-green); margin-bottom: var(--space-sm);">~/skills</h2>
+        <p class="reveal fade-up" style="color: var(--color-text-secondary); font-size: var(--font-scale-3); max-width: 600px; margin-bottom: var(--space-lg);">Ferramentas, linguagens e técnicas do dia a dia.</p>
+        <div class="skills-grid">
+          <span class="skill-tag reveal 
