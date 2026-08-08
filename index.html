@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>k1evz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-elevated: #0c0c0f;
+      --bg-card: #111114;
+      --bg-card-hover: #16161a;
+      --border: #1c1c21;
+      --border-hover: #2a2a32;
+      --text: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #a855f7;
+      --accent-soft: rgba(168, 85, 247, 0.12);
+      --accent-muted: #c084fc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      padding: 56px 24px 120px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Logo */
+    .logo {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: 64px;
+      display: inline-block;
+      transition: opacity 0.25s ease;
+    }
+    .logo:hover {
+      opacity: 0.65;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 80px;
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1.4px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .hero .role {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .hero .loc {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Meta */
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-item .label {
+      margin-bottom: 8px;
+    }
+    .meta-item p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 80px;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .muted {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* Categories / Tags */
+    .category {
+      margin-bottom: 36px;
+    }
+    .category:last-child {
+      margin-bottom: 0;
+    }
+    .category-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tags span {
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 13px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+    .tags span:hover {
+      border-color: var(--accent);
+      color: var(--accent-muted);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    /* Projects */
+    .project {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 30px;
+      margin-bottom: 12px;
+      transition: all 0.25s ease;
+    }
+    .project:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .project-num {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-bottom: 10px;
+    }
+    .project h3 {
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .project p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      max-width: none;
+      line-height: 1.6;
+    }
+    .project .tech {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .project .links a {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 550;
+      letter-spacing: 0.2px;
+      transition: opacity 0.2s ease;
+    }
+    .project .links a:hover {
+      opacity: 0.7;
+    }
+
+    /* Timeline */
+    .timeline-item {
+      margin-bottom: 32px;
+      padding-left: 22px;
+      border-left: 2px solid var(--border);
+      transition: border-color 0.25s ease;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.25s ease;
+    }
+    .timeline-item:hover {
+      border-color: var(--accent);
+    }
+    .timeline-item:hover::before {
+      background: var(--accent);
+    }
+    .timeline-item .year {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 6px;
+    }
+    .timeline-item h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+    .timeline-item p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: none;
+      line-height: 1.55;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 40px 20px 80px;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .meta {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .project {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">&lt;k1evz/&gt;</div>
+    
+    <div class="hero">
+      <h1>Darwin</h1>
+      <p class="role">Security Analyst • Software Engineer</p>
+      <p class="loc">Brasil</p>
+    </div>
+
+    <div class="meta">
+      <div class="meta-item">
+        <div class="label">Idiomas</div>
+        <p>Português · Inglês</p>
+      </div>
+      <div class="meta-item">
+        <div class="label">Localização</div>
+        <p>Brasil</p>
+      </div>
+    </div>
+
+    <section>
+      <div class="label">Sobre</div>
+      <p>Sou o Darwin, mas a galera me chama de kiev ou dex. Comecei a programar com 12 anos e desde então nunca parei.</p>
+      <p>Hoje trabalho como Security Analyst e atuo também como Software Engineer. Meu interesse real sempre foi entender como as coisas funcionam por baixo — memória, binários, execução.</p>
+      <p>Foquei pesado em <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. Já mexi bastante com ROP, shellcode, análise de malware e construção de infraestrutura de C2.</p>
+      <p>No dia a dia uso principalmente C/C++, assembly e debuggers. Gosto de ir fundo em low-level e em como o sistema realmente se comporta.</p>
+    </section>
+
+    <section>
+      <div class="label">Stack</div>
+      <h2>Tecnologias</h2>
+      
+      <div class="category">
+        <div class="category-title">Core</div>
+        <div class="tags">
+          <span>Reverse Engineering</span>
+          <span>Exploit Development</span>
+          <span>ROP Chains</span>
+          <span>Shellcode</span>
+          <span>Malware Analysis</span>
+        </div>
+      </div>
+      
+      <div class="category">
+        <div class="category-title">Linguagens</div>
+        <div class="tags">
+          <span>C</span>
+          <span>C++</span>
+          <span>Assembly x86/x64</span>
+          <span>Python</span>
+          <span>Rust</span>
+        </div>
+      </div>
+      
+      <div class="category">
+        <div class="category-title">Ferramentas</div>
+        <div class="tags">
+          <span>IDA Pro</span>
+          <span>Ghidra</span>
+          <span>x64dbg</span>
+          <span>GDB</span>
+          <span>WinDbg</span>
+          <span>Binary Ninja</span>
+        </div>
+      </div>
+      
+      <div class="category">
+        <div class="category-title">Infra & Outros</div>
+        <div class="tags">
+          <span>C2 Frameworks</span>
+          <span>Linux Internals</span>
+          <span>Windows Internals</span>
+          <span>Memory Forensics</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">Projetos</div>
+      <h2>Trabalhos selecionados</h2>
+      <p class="muted" style="margin-bottom: 28px;">Algumas coisas que construí ou estudei a fundo ao longo do tempo.</p>
+      
+      <div class="project">
+        <div class="project-num">01</div>
+        <h3>Custom C2</h3>
+        <p>Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
+        <div class="tech">C++ · Windows API · Encryption · Network</div>
+        <div class="links">
+          <a href="#">GITHUB →</a>
+        </div>
+      </div>
+      
+      <div class="project">
+        <div class="project-num">02</div>
+        <h3>ROP Lab</h3>
+        <p>Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
+        <div class="tech">C · Assembly · GDB · pwntools</div>
+        <div class="links">
+          <a href="#">GITHUB →</a>
+        </div>
+      </div>
+      
+      <div class="project">
+        <div class="project-num">03</div>
+        <h3>Memory Scanner</h3>
+        <p>Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
+        <div class="tech">C++ · Windows Internals · Memory</div>
+        <div class="links">
+          <a href="#">GITHUB →</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">Trajetória</div>
+      <h2>Caminho</h2>
+      
+      <div class="timeline-item">
+        <div class="year">2024 — atual</div>
+        <h4>Security Analyst</h4>
+        <p>Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="year">2022 — 2024</div>
+        <h4>Software Engineer + RE</h4>
+        <p>Desenvolvimento low-level e estudo intensivo de exploit development e binários.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="year">2012 — 2022</div>
+        <h4>Aprendizado autodidata</h4>
+        <p>Comecei com 12 anos. Passei por várias linguagens até chegar em C, assembly e reverse.</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
