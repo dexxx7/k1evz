@@ -1,283 +1,401 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Darwin (kiev/dex) — Security Analyst & Software Engineer. Portfólio pessoal de Reverse Engineering e Exploit Development.">
-  <meta name="theme-color" content="#0c0614">
-  <title>Darwin (kiev/dex) | Security Analyst & Software Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darwin — Security Analyst • Reverse Engineering</title>
   <style>
-    :root{--bg:#0c0614;--surface:rgba(20,11,31,.82);--text:#f7f2ff;--text-soft:#d2c8dc;--text-muted:#8d8299;--border:rgba(184,117,255,.18);--border-strong:rgba(184,117,255,.42);--purple:#a855f7;--purple-light:#c084fc;--green:#4ade80;--gradient:linear-gradient(135deg,#c084fc,#ec4899);--gradient-text:linear-gradient(135deg,#fff 15%,#c084fc 55%,#ec4899 100%);--shadow-glow:0 0 40px rgba(168,85,247,.12);--radius-md:16px;--ease:cubic-bezier(.2,.8,.2,1)}
-    [data-theme=light]{--bg:#f7f3fb;--surface:rgba(255,255,255,.85);--text:#1a1023;--text-soft:#4f4359;--text-muted:#766a7f;--border:rgba(95,45,135,.16);--border-strong:rgba(126,65,170,.38)}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{min-height:100vh;background:radial-gradient(ellipse 70% 45% at 8% -5%,rgba(168,85,247,.18),transparent 65%),radial-gradient(ellipse 60% 45% at 95% 5%,rgba(236,72,153,.12),transparent 65%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.65;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}button{font:inherit;border:none;background:none;cursor:pointer}
-    .container{width:min(100% - 32px,780px);margin-inline:auto}
-    .site-header{display:flex;align-items:center;justify-content:space-between;padding:28px 0 48px}
-    .logo{font-size:1.1rem;font-weight:800;letter-spacing:-.04em;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .icon-btn{width:44px;height:44px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03);color:var(--text-soft);display:grid;place-items:center;transition:transform .25s var(--ease),border-color .25s,background .25s,box-shadow .25s}
-    .icon-btn:hover{transform:translateY(-3px);border-color:var(--border-strong);background:rgba(168,85,247,.1);box-shadow:var(--shadow-glow)}
-    .hero{margin-bottom:72px}
-    .hero-badge{display:inline-flex;padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:rgba(168,85,247,.08);color:var(--purple-light);font-size:.82rem;font-weight:500;margin-bottom:22px}
-    .hero h1{font-size:clamp(2.6rem,7vw,3.6rem);font-weight:800;letter-spacing:-.045em;line-height:1.05;margin-bottom:12px;background:var(--gradient-text);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero-role{font-size:1.15rem;color:var(--text-soft);font-weight:500;margin-bottom:8px}
-    .hero-location{display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);font-size:.92rem;margin-bottom:32px}
-    .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
-    .tag{padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:500;border:1px solid var(--border);background:rgba(168,85,247,.08);color:var(--text-soft)}
-    .tag.purple{background:rgba(168,85,247,.15);color:var(--purple-light)}.tag.pink{background:rgba(236,72,153,.12);color:#f9a8d4}.tag.blue{background:rgba(96,165,250,.12);color:#93c5fd}.tag.green{background:rgba(74,222,128,.12);color:#86efac}.tag.orange{background:rgba(251,146,60,.12);color:#fdba74}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    @media(min-width:540px){.stats{grid-template-columns:repeat(4,1fr)}}
-    .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px 14px;text-align:center;backdrop-filter:blur(12px)}
-    .stat-value{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:4px}
-    .stat-label{font-size:.75rem;color:var(--text-muted);font-weight:500}
-    section{margin-bottom:clamp(56px,9vw,90px)}
-    .section-label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-light);margin-bottom:8px}
-    .section-title{font-size:clamp(1.4rem,4vw,1.7rem);font-weight:700;letter-spacing:-.03em;margin-bottom:24px}
-    .about-text{color:var(--text-soft);font-size:1.02rem;line-height:1.8}
-    .about-text p{margin-bottom:16px}.about-text p:last-child{margin-bottom:0}.about-text strong{color:var(--text);font-weight:600}
-    .stack-grid{display:grid;gap:16px}
-    .stack-group{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px 22px;backdrop-filter:blur(12px)}
-    .stack-group h3{font-size:.8rem;font-weight:600;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
-    .tags{display:flex;flex-wrap:wrap;gap:8px}
-    .projects{display:grid;gap:14px}
-    .project{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px;transition:border-color .25s,transform .25s var(--ease),box-shadow .25s;backdrop-filter:blur(12px)}
-    .project:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
-    .project-num{font-size:.78rem;font-weight:700;color:var(--purple-light);margin-bottom:8px}
-    .project h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
-    .project p{color:var(--text-soft);font-size:.95rem;line-height:1.65;margin-bottom:14px}
-    .project-tech{font-size:.78rem;color:var(--text-muted)}
-    .timeline{position:relative;padding-left:26px;border-left:2px solid var(--border)}
-    .timeline-item{position:relative;padding-bottom:32px}.timeline-item:last-child{padding-bottom:0}
-    .timeline-item::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--purple);box-shadow:0 0 0 4px var(--bg)}
-    .timeline-date{font-size:.82rem;color:var(--purple-light);font-weight:600;margin-bottom:4px}
-    .timeline-item h3{font-size:1.05rem;font-weight:700;margin-bottom:4px}
-    .timeline-role{font-size:.88rem;color:var(--text-muted);margin-bottom:8px}
-    .timeline-desc{color:var(--text-soft);font-size:.95rem;line-height:1.6}
-    .contact-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px 22px;backdrop-filter:blur(12px)}
-    .contact-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .contact-info h3{font-size:1rem;font-weight:600;margin-bottom:3px}
-    .contact-info p{font-size:.85rem;color:var(--text-muted)}
-    .copy-btn{padding:8px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(168,85,247,.1);color:var(--purple-light);font-size:.8rem;font-weight:600;white-space:nowrap}
-    .copy-btn.copied{background:rgba(74,222,128,.15);color:var(--green);border-color:rgba(74,222,128,.3)}
-    .contact-detail{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.9rem;color:var(--purple-light);font-weight:500;display:none}
-    .contact-detail.show{display:block}
-    .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
-    .js .reveal.visible{opacity:1;transform:translateY(0)}
-    @media(min-width:640px){.container{width:min(100% - 48px,820px)}}
+    :root {
+      --bg: #0a0a0f;
+      --card: #12121a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #7c3aed;
+      --pink: #ec4899;
+      --border: rgba(124, 58, 237, 0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 0 6rem;
+    }
+
+    /* HEADER */
+    header {
+      margin-bottom: 5rem;
+    }
+    .name {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #a78bfa, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.4rem;
+    }
+    .role {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .bio {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 620px;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 5rem;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--pink);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 650;
+      margin-bottom: 2rem;
+    }
+
+    /* STACK */
+    .stack-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .stack-group h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .tag {
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      color: white;
+      border: none;
+      padding: 0.45rem 1.05rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+    .tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(236, 72, 153, 0.45);
+      filter: brightness(1.12);
+    }
+    .tag.active {
+      outline: 2px solid #f9a8d4;
+      box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.25);
+    }
+    .tag-detail {
+      display: none;
+      margin-top: 1.1rem;
+      padding: 1.1rem 1.3rem;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #e2e8f0;
+      animation: fadeIn 0.22s ease;
+    }
+    .tag-detail.show {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* PROJECTS */
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .project-num {
+      font-size: 0.8rem;
+      color: var(--pink);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .project h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .project p {
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+    .project-tech {
+      font-size: 0.85rem;
+      color: #a78bfa;
+    }
+
+    /* TIMELINE */
+    .timeline-item {
+      border-left: 2px solid rgba(124, 58, 237, 0.4);
+      padding-left: 1.4rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      border-radius: 50%;
+    }
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--pink);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-item h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-role {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* CONTACT */
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+    }
+    .contact-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .discord-id {
+      display: inline-block;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <header class="site-header">
-      <a href="/" class="logo">k1evz</a>
-      <button class="icon-btn" id="theme-toggle" aria-label="Tema">
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      </button>
+
+    <header>
+      <div class="name">Darwin</div>
+      <div class="role">Security Analyst • Software Engineer</div>
+      <p class="bio">
+        Foco em Reverse Engineering e Exploit Development.  
+        Trabalho com ROP, shellcode, malware analysis e infraestrutura de C2.  
+        C/C++, Assembly, Windows & Linux Internals.
+      </p>
     </header>
-    <main>
-      <section class="hero reveal">
-        <div class="hero-badge">Security Analyst • Software Engineer</div>
-        <h1>Darwin</h1>
-        <p class="hero-role">Reverse Engineering • Exploit Development • Low-level</p>
-        <div class="hero-location">Brasil</div>
-        <div class="hero-tags">
-          <span class="tag purple">Reverse Engineering</span>
-          <span class="tag pink">Exploit Development</span>
-          <span class="tag blue">C / C++</span>
-          <span class="tag green">Assembly x86/x64</span>
-          <span class="tag orange">Windows Internals</span>
-          <span class="tag purple">ROP & Shellcode</span>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="stat-value">5</div><div class="stat-label">Projetos individuais</div></div>
-          <div class="stat"><div class="stat-value">11</div><div class="stat-label">Projetos</div></div>
-          <div class="stat"><div class="stat-value">3</div><div class="stat-label">Principais</div></div>
-          <div class="stat"><div class="stat-value">8</div><div class="stat-label">Ferramentas core</div></div>
-        </div>
-      </section>
-      <section class="reveal">
-        <div class="section-label">Sobre</div>
-        <h2 class="section-title">Quem sou eu</h2>
-        <div class="about-text">
-          <p>Olá, galera. Boa noite.<br>Sou o <strong>Darwin</strong>, podem me chamar de <strong>kiev</strong> ou <strong>dex</strong>.</p>
-          <p>Trabalho como Security Analyst e também atuo como Software Engineer. Estudo programação desde os 12 anos.</p>
-          <p>Meu foco principal é <strong>Reverse Engineering</strong> e <strong>Exploit Development</strong>. Tenho experiência com ROP, shellcode e desenvolvimento de infraestrutura de C2.</p>
-          <p>Uso bastante C/C++, tenho boa base em memória e assembly, e trabalho constantemente com debuggers e ferramentas de engenharia reversa. Sempre buscando evoluir.</p>
-        </div>
-      </section>
-      <section class="reveal">
-        <div class="section-label">Stack</div>
-        <h2 class="section-title">Tecnologias</h2>
-        <div class="stack-grid">
-          <div class="stack-group">
-            <h3>Core</h3>
-            <div class="tags">
-              <span class="tag">Reverse Engineering</span>
-              <span class="tag">Exploit Development</span>
-              <span class="tag">ROP Chains</span>
-              <span class="tag">Shellcode</span>
-              <span class="tag">Malware Analysis</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <h3>Linguagens</h3>
-            <div class="tags">
-              <span class="tag">C</span>
-              <span class="tag">C++</span>
-              <span class="tag">Assembly</span>
-              <span class="tag">Python</span>
-              <span class="tag">Rust</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <h3>Ferramentas</h3>
-            <div class="tags">
-              <span class="tag">IDA Pro</span>
-              <span class="tag">Ghidra</span>
-              <span class="tag">x64dbg</span>
-              <span class="tag">GDB</span>
-              <span class="tag">WinDbg</span>
-              <span class="tag">Binary Ninja</span>
-            </div>
-          </div>
-          <div class="stack-group">
-            <h3>Infra & Outros</h3>
-            <div class="tags">
-              <span class="tag">C2 Frameworks</span>
-              <span class="tag">Linux Internals</span>
-              <span class="tag">Windows Internals</span>
-              <span class="tag">Memory Forensics</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="reveal">
-        <div class="section-label">Projetos</div>
-        <h2 class="section-title">Trabalhos selecionados</h2>
-        <div class="projects">
-          <article class="project">
-            <div class="project-num">01</div>
-            <h3>Custom C2</h3>
-            <p>Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
-            <div class="project-tech">C++ · Windows API · Encryption · Network</div>
-          </article>
-          <article class="project">
-            <div class="project-num">02</div>
-            <h3>ROP Lab</h3>
-            <p>Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
-            <div class="project-tech">C · Assembly · GDB · pwntools</div>
-          </article>
-          <article class="project">
-            <div class="project-num">03</div>
-            <h3>Memory Scanner</h3>
-            <p>Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
-            <div class="project-tech">C++ · Windows Internals · Memory</div>
-          </article>
-        </div>
-      </section>
+    <!-- STACK -->
+    <section>
+      <div class="section-label">Stack</div>
+      <h2 class="section-title">Tecnologias</h2>
 
-      <section class="reveal">
-        <div class="section-label">Trajetória</div>
-        <h2 class="section-title">Experiência</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">2024 — Presente</div>
-            <h3>Security Analyst</h3>
-            <div class="timeline-role">Atual</div>
-            <div class="timeline-desc">Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2022 — 2024</div>
-            <h3>Software Engineer + Reverse Engineering</h3>
-            <div class="timeline-role">Desenvolvimento low-level</div>
-            <div class="timeline-desc">Desenvolvimento low-level e estudo intensivo de exploit development e binários.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2012 — 2022</div>
-            <h3>Aprendizado autodidata</h3>
-            <div class="timeline-role">Base</div>
-            <div class="timeline-desc">Comecei com 12 anos. Passei por várias linguagens até chegar em C, assembly e reverse.</div>
-          </div>
+      <div class="stack-group">
+        <h3>Core</h3>
+        <div class="tags">
+          <button class="tag" data-detail="reverse">Reverse Engineering</button>
+          <button class="tag" data-detail="exploit">Exploit Development</button>
+          <button class="tag" data-detail="rop">ROP Chains</button>
+          <button class="tag" data-detail="shellcode">Shellcode</button>
+          <button class="tag" data-detail="malware">Malware Analysis</button>
         </div>
-      </section>
+        <div class="tag-detail" id="detail-core"></div>
+      </div>
 
-      <section class="reveal">
-        <div class="section-label">Contato</div>
-        <h2 class="section-title">Vamos conversar</h2>
-        <div class="contact-card">
-          <div class="contact-top">
-            <div class="contact-info">
-              <h3>Discord</h3>
-              <p>A forma mais rápida de me chamar</p>
-            </div>
-            <button class="copy-btn" data-copy="k1evz">Copiar Discord</button>
-          </div>
-          <div class="contact-detail" id="detail-discord"></div>
+      <div class="stack-group">
+        <h3>Linguagens</h3>
+        <div class="tags">
+          <button class="tag" data-detail="c">C</button>
+          <button class="tag" data-detail="cpp">C++</button>
+          <button class="tag" data-detail="asm">Assembly</button>
+          <button class="tag" data-detail="python">Python</button>
+          <button class="tag" data-detail="rust">Rust</button>
         </div>
-      </section>
-    </main>
+        <div class="tag-detail" id="detail-lang"></div>
+      </div>
+
+      <div class="stack-group">
+        <h3>Ferramentas</h3>
+        <div class="tags">
+          <button class="tag" data-detail="ida">IDA Pro</button>
+          <button class="tag" data-detail="ghidra">Ghidra</button>
+          <button class="tag" data-detail="x64dbg">x64dbg</button>
+          <button class="tag" data-detail="gdb">GDB</button>
+          <button class="tag" data-detail="windbg">WinDbg</button>
+          <button class="tag" data-detail="binja">Binary Ninja</button>
+        </div>
+        <div class="tag-detail" id="detail-tools"></div>
+      </div>
+
+      <div class="stack-group">
+        <h3>Infra & Outros</h3>
+        <div class="tags">
+          <button class="tag" data-detail="c2">C2 Frameworks</button>
+          <button class="tag" data-detail="linux">Linux Internals</button>
+          <button class="tag" data-detail="windows">Windows Internals</button>
+          <button class="tag" data-detail="memory">Memory Forensics</button>
+        </div>
+        <div class="tag-detail" id="detail-infra"></div>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section>
+      <div class="section-label">Projetos</div>
+      <h2 class="section-title">Trabalhos selecionados</h2>
+
+      <article class="project">
+        <div class="project-num">01</div>
+        <h3>Custom C2</h3>
+        <p>Infraestrutura de Command & Control feita do zero, com foco em stealth e comunicação criptografada.</p>
+        <div class="project-tech">C++ · Windows API · Encryption · Network</div>
+      </article>
+
+      <article class="project">
+        <div class="project-num">02</div>
+        <h3>ROP Lab</h3>
+        <p>Ambiente de estudo e exploração de ROP chains em binários vulneráveis, com payloads customizados.</p>
+        <div class="project-tech">C · Assembly · GDB · pwntools</div>
+      </article>
+
+      <article class="project">
+        <div class="project-num">03</div>
+        <h3>Memory Scanner</h3>
+        <p>Ferramenta para varredura e análise de memória de processos em tempo real, com suporte a padrões e dumps.</p>
+        <div class="project-tech">C++ · Windows Internals · Memory</div>
+      </article>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section>
+      <div class="section-label">Trajetória</div>
+      <h2 class="section-title">Experiência</h2>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2024 — Presente</div>
+        <h3>Security Analyst</h3>
+        <div class="timeline-role">Atual</div>
+        <p>Análise de ameaças, engenharia reversa de malware e suporte a incidentes.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2022 — 2024</div>
+        <h3>Software Engineer + Reverse Engineering</h3>
+        <div class="timeline-role">Desenvolvimento low-level</div>
+        <p>Desenvolvimento low-level e estudo intensivo de exploit development e binários.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2012 — 2022</div>
+        <h3>Aprendizado autodidata</h3>
+        <div class="timeline-role">Base</div>
+        <p>Comecei com 12 anos. Passei por várias linguagens até chegar em C, assembly e reverse.</p>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section>
+      <div class="section-label">Contato</div>
+      <h2 class="section-title">Vamos conversar</h2>
+      <div class="contact-card">
+        <h3>Discord</h3>
+        <p>A forma mais rápida de me chamar</p>
+        <div class="discord-id">k1evz</div>
+      </div>
+    </section>
+
   </div>
 
   <script>
-    document.documentElement.classList.add('js');
+    const details = {
+      reverse: "Análise estática e dinâmica de binários. Descompilação, reconstrução de lógica, identificação de vulnerabilidades e reconstrução de fluxo de execução em software compilado.",
+      exploit: "Desenvolvimento de exploits a partir de zero-days ou vulns conhecidas. Foco em reliability, bypass de mitigações (ASLR, DEP, CFG) e payloads estáveis.",
+      rop: "Construção de ROP chains para contornar NX/DEP. Análise de gadgets, stack pivoting, chaining e payload crafting em x86/x64.",
+      shellcode: "Escrita de shellcode position-independent, null-free, staged e encoded. Integração com loaders, process injection e técnicas de evasão.",
+      malware: "Análise estática + dinâmica de malware. Unpacking, behavior analysis, extração de IOCs, reconstrução de C2 e identificação de técnicas de evasão.",
+      c: "Base sólida em C puro para low-level. Manipulação de memória, syscalls, sockets, e desenvolvimento de ferramentas de segurança e loaders.",
+      cpp: "C++ moderno + Windows API / Linux. Usado em C2 frameworks, memory scanners, injectors e ferramentas de análise de processos.",
+      asm: "Assembly x86/x64 (Intel syntax). Leitura e escrita de código assembly para shellcode, reverse engineering e entendimento profundo de binários.",
+      python: "Automação pesada, scripting de exploits, pwntools, análise de binários, scraping de strings e ferramentas auxiliares de reverse.",
+      rust: "Uso crescente em ferramentas de segurança por performance e memory safety. Experimentação em loaders e utilitários low-level.",
+      ida: "IDA Pro — descompilação avançada, graph view, FLIRT signatures, scripting com IDC/Python e análise profunda de binários complexos.",
+      ghidra: "Ghidra (NSA) — decompiler potente, análise estática gratuita, scripting e boa performance em binários grandes.",
+      x64dbg: "Debugger principal no Windows. Plugins, tracing, memory breakpoints e análise dinâmica de malware e exploits.",
+      gdb: "GDB + pwndbg/gef no Linux. Debugging de binários, ROP, heap analysis e exploração em ambiente Linux.",
+      windbg: "WinDbg para kernel-mode e user-mode no Windows. Análise de dumps, crashes e debugging de drivers.",
+      binja: "Binary Ninja — interface moderna, decompiler limpo e boa para análise rápida + desenvolvimento de plugins.",
+      c2: "Desenvolvimento e operação de frameworks de Command & Control customizados. Foco em stealth, criptografia e resiliência.",
+      linux: "Kernel internals, syscalls, memory management, process structure, namespaces e técnicas de rootkit no Linux.",
+      windows: "Windows Internals (processos, threads, handles, memory manager, PEB/TEB, kernel objects, SSDT, etc).",
+      memory: "Varredura e análise de memória de processos em tempo real. Pattern scanning, dumps, extração de strings e reconstrução de estruturas."
+    };
 
-    const toggle = document.getElementById('theme-toggle');
-    const moon = toggle.querySelector('.icon-moon');
-    const sun = toggle.querySelector('.icon-sun');
+    document.querySelectorAll('.tag').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.detail;
+        const group = btn.closest('.stack-group');
+        const area = group.querySelector('.tag-detail');
 
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      if (theme === 'light') {
-        moon.style.display = 'none';
-        sun.style.display = 'block';
-      } else {
-        moon.style.display = 'block';
-        sun.style.display = 'none';
-      }
-    }
-    setTheme(localStorage.getItem('theme') || 'dark');
-    toggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
+        // limpa tudo
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tag-detail').forEach(d => {
+          d.classList.remove('show');
+          d.innerHTML = '';
+        });
 
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const value = btn.dataset.copy;
-        const detail = btn.closest('.contact-card').querySelector('.contact-detail');
-        try {
-          await navigator.clipboard.writeText(value);
-          btn.textContent = 'Copiado!';
-          btn.classList.add('copied');
-          detail.textContent = value;
-          detail.classList.add('show');
-          setTimeout(() => {
-            btn.textContent = 'Copiar Discord';
-            btn.classList.remove('copied');
-          }, 2000);
-        } catch(e) {
-          detail.textContent = value;
-          detail.classList.add('show');
-        }
+        // ativa o atual
+        btn.classList.add('active');
+        area.innerHTML = details[key];
+        area.classList.add('show');
       });
     });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
